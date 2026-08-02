@@ -117,13 +117,27 @@ a{color:inherit}
 .hero h1{margin-bottom:22px}
 .hero-lead{max-width:540px;margin-bottom:28px;color:var(--ink)}
 .topics{display:flex;flex-wrap:wrap;gap:10px;max-width:560px}
-.hero-list{max-width:560px}
-.hl-title{font-weight:700;margin-bottom:14px}
-.hero-list ul{list-style:none;display:flex;flex-direction:column;gap:11px}
-.hero-list li{display:flex;gap:12px;align-items:flex-start;font-weight:500}
-.hero-list .ck{flex-shrink:0;width:24px;height:24px;border-radius:8px;background:#FCE6F1;border:1px solid #F6CFE2;
-  color:var(--pink);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;margin-top:1px}
 .hero-visual{position:relative}
+
+/* ---------- «За 90 минут ты» — своя секция ---------- */
+.mins .sec-head{text-align:center;max-width:640px;margin-left:auto;margin-right:auto}
+.mins-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.mins-item{display:flex;gap:14px;align-items:flex-start;padding:18px 20px;border-radius:16px;
+  background:var(--surface);border:1px solid var(--line);cursor:default;
+  transition:background .2s ease, border-color .2s ease, transform .2s ease, box-shadow .2s ease}
+.mins-item:hover{background:var(--wash);border-color:#EBD3E4;transform:translateY(-2px);box-shadow:var(--shadow)}
+.mins-item .ck{flex-shrink:0;width:26px;height:26px;border-radius:8px;background:#FCE6F1;border:1px solid #F6CFE2;
+  color:var(--pink);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;margin-top:1px;
+  transition:background .2s ease, color .2s ease, border-color .2s ease}
+.mins-item:hover .ck{background:var(--pink);color:#fff;border-color:var(--pink)}
+.mins-item.full{grid-column:1/-1;background:linear-gradient(100deg,#FDEBF4,#F6EAFB);border-color:#F3D3E8}
+.mins-item.full .ck{background:#fff;border-color:#F3D3E8}
+.mins-grid .mins-item:nth-child(2){transition-delay:.05s}
+.mins-grid .mins-item:nth-child(3){transition-delay:.09s}
+.mins-grid .mins-item:nth-child(4){transition-delay:.13s}
+.mins-grid .mins-item:nth-child(5){transition-delay:.17s}
+.mins-grid .mins-item:nth-child(6){transition-delay:.21s}
+.mins-grid .mins-item:nth-child(7){transition-delay:.25s}
 .glass{background:rgba(255,255,255,.72);backdrop-filter:blur(12px);border:1px solid #fff;
   border-radius:var(--radius-lg);padding:26px;box-shadow:var(--shadow)}
 .chat{display:flex;flex-direction:column;gap:13px}
@@ -142,9 +156,17 @@ a{color:inherit}
 .count-when b{color:var(--pink)}
 .count-when .sub{display:block;font-weight:500;font-size:15px;opacity:.7;margin-top:4px}
 .clock{display:flex;gap:10px}
-.unit{min-width:72px;text-align:center;background:var(--wash);border:1px solid var(--line);border-radius:15px;padding:11px 8px}
-.unit b{display:block;font-family:'Unbounded',sans-serif;font-size:28px;font-weight:700;line-height:1;font-variant-numeric:tabular-nums}
-.unit span{font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;opacity:.6;margin-top:7px;display:block}
+.unit{min-width:74px;text-align:center;background:linear-gradient(180deg,#FFFFFF,#FCE7F2);border:1px solid #F3D0E5;
+  border-radius:15px;padding:12px 8px;animation:pulse 2.6s ease-in-out infinite}
+.unit:nth-child(2){animation-delay:.15s}
+.unit:nth-child(3){animation-delay:.3s}
+.unit:nth-child(4){animation-delay:.45s}
+.unit b{display:block;font-family:'Unbounded',sans-serif;font-size:29px;font-weight:800;line-height:1;
+  font-variant-numeric:tabular-nums;color:var(--pink)}
+.unit span{font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--pink-strong);opacity:.7;margin-top:7px;display:block}
+@keyframes pulse{0%,100%{box-shadow:0 8px 22px -14px rgba(230,25,140,.35);transform:translateY(0)}
+  50%{box-shadow:0 14px 34px -10px rgba(230,25,140,.6);transform:translateY(-2px)}}
+@media (prefers-reduced-motion:reduce){.unit{animation:none}}
 
 /* ---------- CTA band (dark inset card) ---------- */
 .ctaband{margin-top:24px;background:var(--dark);color:#fff;border-radius:var(--radius);padding:36px 40px;
@@ -225,8 +247,10 @@ a{color:inherit}
 .obj-q::before{content:"«";color:var(--pink);font-weight:800;margin-right:1px}
 .obj-a{color:var(--pink-strong);font-weight:600}
 
-/* ---------- manifest ---------- */
-.manifest{margin-top:60px;text-align:center;max-width:760px;margin-left:auto;margin-right:auto}
+/* ---------- manifest / цитата ---------- */
+.manifest{margin-top:64px;max-width:820px;margin-left:auto;margin-right:auto;text-align:center;position:relative;padding:6px 0}
+.manifest .q-mark{font-family:'Unbounded',sans-serif;font-weight:800;font-size:88px;line-height:.5;color:var(--pink);opacity:.4;height:50px}
+.manifest blockquote{font-family:'Unbounded',sans-serif;font-weight:800;font-size:var(--h2);letter-spacing:-.02em;line-height:1.09}
 
 /* ---------- footer ---------- */
 footer{background:var(--dark);color:#CFC7D7;padding:56px 0 34px}
@@ -260,7 +284,7 @@ footer{background:var(--dark);color:#CFC7D7;padding:56px 0 34px}
   .sec{padding:66px 0}
   .hero-grid{grid-template-columns:1fr}
   .hero-visual{order:-1}
-  .cards,.ba,.tariffs,.obj,.foot-grid{grid-template-columns:1fr}
+  .cards,.ba,.tariffs,.obj,.foot-grid,.mins-grid{grid-template-columns:1fr}
   .speaker{grid-template-columns:1fr;text-align:center;justify-items:center}
   .count{flex-direction:column;align-items:flex-start}
   .clock{width:100%;justify-content:space-between}
@@ -293,17 +317,8 @@ footer{background:var(--dark);color:#CFC7D7;padding:56px 0 34px}
       <div>
         <span class="label">Онлайн-практикум · разбор вживую</span>
         <h1>Практикум<br><span class="accent"><span class="nw">«ИИ-помощник</span><br><span class="nw">в твоём деле»</span></span></h1>
-        <p class="hero-lead">Разбираем ChatGPT вживую: за 90 минут пишем живой пост и собираем карусель – без кода, без дизайнера и без «я не технарь».</p>
-        <div class="hero-list">
-          <div class="hl-title">За 90 минут ты:</div>
-          <ul>
-            <li><span class="ck">✓</span>Поймёшь, как ИИ может стать инструментом под твою экспертизу для роста в доходе</li>
-            <li><span class="ck">✓</span>Узнаешь, что значит обучить ИИ, и разницу между необученной ИИшкой и обученным помощником в твоём стиле</li>
-            <li><span class="ck">✓</span>Соберёшь свой промпт под свой стиль текста</li>
-            <li><span class="ck">✓</span>Увидишь, как из текста рождается карусель без дизайнера</li>
-            <li><span class="ck">🎁</span>Заберёшь подарок в конце: промпт «чем ИИ полезен лично тебе»</li>
-          </ul>
-        </div>
+        <p class="hero-lead">Разбираем ChatGPT вживую: за 90 минут пишем живой пост и собираем карусель – без кода, без дизайнера и без «я не технарь». Уходишь не с теорией, а с готовыми результатами в своём стиле.</p>
+        <a href="#tariffs" class="btn">Забронировать место <span class="arw">→</span></a>
       </div>
       <div class="hero-visual">
         <div class="glass">
@@ -341,11 +356,30 @@ footer{background:var(--dark);color:#CFC7D7;padding:56px 0 34px}
   </div>
 </section>
 
+<!-- ===== «За 90 минут ты» — сразу после главного экрана ===== -->
+<section class="sec mins band-tint">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="label">Программа практикума</span>
+      <h2>За 90 минут ты:</h2>
+    </div>
+    <div class="mins-grid">
+      <div class="mins-item reveal"><span class="ck">✓</span><span>Поймёшь, как ИИ может стать инструментом под твою экспертизу для роста в доходе</span></div>
+      <div class="mins-item reveal"><span class="ck">✓</span><span>Узнаешь, что значит обучить ИИ, и разницу между необученной ИИшкой и обученным помощником в твоём стиле</span></div>
+      <div class="mins-item reveal"><span class="ck">✓</span><span>Соберёшь свой промпт под свой стиль текста</span></div>
+      <div class="mins-item reveal"><span class="ck">✓</span><span>Увидишь, как из текста рождается карусель без дизайнера</span></div>
+      <div class="mins-item reveal"><span class="ck">✓</span><span>Узнаешь, как собирать с помощью ИИ свои мини-продукты и гайды, которые сможешь продавать</span></div>
+      <div class="mins-item reveal"><span class="ck">✓</span><span>Получишь море идей и инсайтов, как применить ИИ для своих задач – без страха перед техническими вопросами</span></div>
+      <div class="mins-item full reveal"><span class="ck">🎁</span><span>Заберёшь подарок в конце: промпт «чем ИИ полезен лично тебе»</span></div>
+    </div>
+  </div>
+</section>
+
 <!-- ===== экран 2 — белая глава ===== -->
 <section class="sec">
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="label">90 минут практики</span>
+      <span class="label">Как проходит эфир</span>
       <h2>От «я не технарь» до первого результата <span class="accent">за один эфир</span></h2>
       <p>Забудьте про сухую теорию. Прямо в эфире разберём четыре вещи, которые сразу заберёте в работу:</p>
     </div>
@@ -426,9 +460,10 @@ footer{background:var(--dark);color:#CFC7D7;padding:56px 0 34px}
       <div class="obj-card reveal"><div class="obj-q">Опять про заработок на ИИ»</div><div class="obj-a">Нет. Про то, чтобы делать своё дело проще – в своём стиле.</div></div>
     </div>
 
-    <div class="manifest reveal">
-      <h2>Не обещаю миллион на автомате.<br><span class="accent">Покажу, как делать своё дело в своём стиле.</span></h2>
-    </div>
+    <figure class="manifest reveal">
+      <div class="q-mark">«</div>
+      <blockquote>Не обещаем миллион на автомате.<br><span class="accent">Покажем, как делать своё дело в своём стиле.</span></blockquote>
+    </figure>
 
     <div class="ctaband reveal" style="margin-top:44px">
       <div>
