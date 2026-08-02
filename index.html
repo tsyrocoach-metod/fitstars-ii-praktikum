@@ -118,6 +118,11 @@ a{color:inherit}
 .hero-lead{max-width:540px;margin-bottom:28px;color:var(--ink)}
 .topics{display:flex;flex-wrap:wrap;gap:10px;max-width:560px}
 .hero-visual{position:relative}
+.photo-ph{aspect-ratio:4/5;border-radius:var(--radius-lg);border:2px dashed #E7CFE0;
+  background:linear-gradient(160deg,#FFF3FA,#F3EDFD);display:flex;flex-direction:column;
+  align-items:center;justify-content:center;gap:10px;box-shadow:var(--shadow)}
+.photo-ph .ph-ic{font-size:36px;opacity:.75}
+.photo-ph .ph-cap{font-size:14px;font-weight:600;color:var(--ink);opacity:.5}
 
 /* ---------- «За 90 минут ты» — своя секция ---------- */
 .mins .sec-head{text-align:center;max-width:640px;margin-left:auto;margin-right:auto}
@@ -167,6 +172,11 @@ a{color:inherit}
 @keyframes pulse{0%,100%{box-shadow:0 8px 22px -14px rgba(230,25,140,.35);transform:translateY(0)}
   50%{box-shadow:0 14px 34px -10px rgba(230,25,140,.6);transform:translateY(-2px)}}
 @media (prefers-reduced-motion:reduce){.unit{animation:none}}
+
+/* таймер + CTA в одном ряду */
+.hero-actions{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:26px;align-items:stretch}
+.hero-actions .count{margin-top:0;flex-direction:column;align-items:flex-start;justify-content:center;gap:18px}
+.hero-actions .ctaband{margin-top:0}
 
 /* ---------- CTA band (dark inset card) ---------- */
 .ctaband{margin-top:24px;background:var(--dark);color:#fff;border-radius:var(--radius);padding:36px 40px;
@@ -284,7 +294,7 @@ footer{background:var(--dark);color:#CFC7D7;padding:56px 0 34px}
   .sec{padding:66px 0}
   .hero-grid{grid-template-columns:1fr}
   .hero-visual{order:-1}
-  .cards,.ba,.tariffs,.obj,.foot-grid,.mins-grid{grid-template-columns:1fr}
+  .cards,.ba,.tariffs,.obj,.foot-grid,.mins-grid,.hero-actions{grid-template-columns:1fr}
   .speaker{grid-template-columns:1fr;text-align:center;justify-items:center}
   .count{flex-direction:column;align-items:flex-start}
   .clock{width:100%;justify-content:space-between}
@@ -318,45 +328,19 @@ footer{background:var(--dark);color:#CFC7D7;padding:56px 0 34px}
         <span class="label">Онлайн-практикум · разбор вживую</span>
         <h1>Практикум<br><span class="accent"><span class="nw">«ИИ-помощник</span><br><span class="nw">в твоём деле»</span></span></h1>
         <p class="hero-lead">Разбираем ChatGPT вживую: за 90 минут пишем живой пост и собираем карусель – без кода, без дизайнера и без «я не технарь». Уходишь не с теорией, а с готовыми результатами в своём стиле.</p>
-        <a href="#tariffs" class="btn">Забронировать место <span class="arw">→</span></a>
       </div>
       <div class="hero-visual">
-        <div class="glass">
-          <div class="chat">
-            <div class="bubble ai"><span class="who">Необученный ИИ</span>«В современном мире важно уделять внимание своему развитию и постоянно двигаться вперёд…»</div>
-            <div class="bubble you"><span class="who">Твой обученный помощник</span>«Знаешь это чувство, когда открываешь ноут в 7 утра, а список дел уже смотрит на тебя с укором? Вот с него и начнём.»</div>
-          </div>
+        <div class="photo-ph" aria-hidden="true">
+          <span class="ph-ic">📷</span>
+          <span class="ph-cap">Здесь будет фото</span>
         </div>
       </div>
     </div>
 
-    <div class="count">
-      <div class="count-when">
-        Практикум пройдёт <b>19 августа в 18:00 (мск)</b>
-        <span class="sub">Успей забронировать место до старта практикума</span>
-      </div>
-      <div class="clock">
-        <div class="unit"><b id="cd-d">00</b><span>дней</span></div>
-        <div class="unit"><b id="cd-h">00</b><span>часов</span></div>
-        <div class="unit"><b id="cd-m">00</b><span>минут</span></div>
-        <div class="unit"><b id="cd-s">00</b><span>секунд</span></div>
-      </div>
-    </div>
-
-    <div class="ctaband">
-      <div>
-        <h2>Готов начать?</h2>
-        <p>Мест немного – практикум камерный, с разбором вживую. Выбери формат участия и оставь контакты на следующем шаге.</p>
-      </div>
-      <div class="side">
-        <a href="#tariffs" class="btn">Зарегистрироваться <span class="arw">→</span></a>
-        <span class="fine">После регистрации вы получите «Гайд по быстрой регистрации в ИИ»</span>
-      </div>
-    </div>
   </div>
 </section>
 
-<!-- ===== «За 90 минут ты» — сразу после главного экрана ===== -->
+<!-- ===== «За 90 минут ты» + таймер/CTA — после главного экрана ===== -->
 <section class="sec mins band-tint">
   <div class="wrap">
     <div class="sec-head reveal">
@@ -371,6 +355,31 @@ footer{background:var(--dark);color:#CFC7D7;padding:56px 0 34px}
       <div class="mins-item reveal"><span class="ck">✓</span><span>Узнаешь, как собирать с помощью ИИ свои мини-продукты и гайды, которые сможешь продавать</span></div>
       <div class="mins-item reveal"><span class="ck">✓</span><span>Получишь море идей и инсайтов, как применить ИИ для своих задач – без страха перед техническими вопросами</span></div>
       <div class="mins-item full reveal"><span class="ck">🎁</span><span>Заберёшь подарок в конце: промпт «чем ИИ полезен лично тебе»</span></div>
+    </div>
+
+    <div class="hero-actions reveal">
+      <div class="count">
+        <div class="count-when">
+          Практикум пройдёт <b>19 августа в 18:00 (мск)</b>
+          <span class="sub">Успей забронировать место до старта практикума</span>
+        </div>
+        <div class="clock">
+          <div class="unit"><b id="cd-d">00</b><span>дней</span></div>
+          <div class="unit"><b id="cd-h">00</b><span>часов</span></div>
+          <div class="unit"><b id="cd-m">00</b><span>минут</span></div>
+          <div class="unit"><b id="cd-s">00</b><span>секунд</span></div>
+        </div>
+      </div>
+      <div class="ctaband">
+        <div>
+          <h2>Готов начать?</h2>
+          <p>Мест немного – практикум камерный, с разбором вживую. Выбери формат участия и оставь контакты на следующем шаге.</p>
+        </div>
+        <div class="side">
+          <a href="#tariffs" class="btn">Зарегистрироваться <span class="arw">→</span></a>
+          <span class="fine">После регистрации вы получите «Гайд по быстрой регистрации в ИИ»</span>
+        </div>
+      </div>
     </div>
   </div>
 </section>
