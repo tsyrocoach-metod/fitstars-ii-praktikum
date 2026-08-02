@@ -273,12 +273,20 @@ a{color:inherit}
 .tbtn{width:100%;margin-top:auto}
 .t-note{margin-top:12px;text-align:center}
 
-/* ---------- objections ---------- */
-.obj{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:44px}
-.obj-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:22px}
-.obj-q{font-weight:700;margin-bottom:10px}
-.obj-q::before{content:"«";color:var(--pink);font-weight:800;margin-right:1px}
-.obj-a{color:var(--pink-strong);font-weight:600}
+/* ---------- ответы на сомнения (Q&A) ---------- */
+.faq-head{text-align:center;max-width:620px;margin:64px auto 34px}
+.faq-head .label{display:block;margin-bottom:12px}
+.obj{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.obj-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:24px;
+  transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease}
+.obj-card:hover{transform:translateY(-3px);box-shadow:var(--shadow);border-color:#E7CFE0}
+.obj-q{display:flex;gap:12px;align-items:flex-start;font-weight:700;color:var(--ink);margin-bottom:15px}
+.obj-a{display:flex;gap:12px;align-items:flex-start;color:var(--ink);font-weight:500;
+  border-top:1px dashed var(--line);padding-top:15px}
+.obj-badge,.obj-mk{flex-shrink:0;width:28px;height:28px;border-radius:9px;display:flex;align-items:center;
+  justify-content:center;font-weight:800;font-size:14px;margin-top:1px}
+.obj-badge{background:var(--wash);border:1px solid var(--line);color:var(--ink);opacity:.65}
+.obj-mk{background:#FCE6F1;border:1px solid #F6CFE2;color:var(--pink)}
 
 /* ---------- manifest / цитата ---------- */
 .manifest{margin-top:64px;max-width:820px;margin-left:auto;margin-right:auto;text-align:center;position:relative;padding:6px 0}
@@ -482,10 +490,23 @@ footer{background:var(--dark);color:#CFC7D7;padding:56px 0 34px}
       </div>
     </div>
 
+    <div class="faq-head reveal">
+      <span class="label">Честные ответы</span>
+      <h2>Что тебя останавливает?</h2>
+    </div>
     <div class="obj">
-      <div class="obj-card reveal"><div class="obj-q">Я гуманитарий, не разберусь»</div><div class="obj-a">Я тоже. Разобралась я – разберёшься и ты.</div></div>
-      <div class="obj-card reveal"><div class="obj-q">Нет времени»</div><div class="obj-a">Практикум – 90 минут. Дальше система освобождает время, а не отнимает.</div></div>
-      <div class="obj-card reveal"><div class="obj-q">Опять про заработок на ИИ»</div><div class="obj-a">Нет. Про то, чтобы делать своё дело проще – в своём стиле.</div></div>
+      <div class="obj-card reveal">
+        <div class="obj-q"><span class="obj-badge">?</span><span>«Я гуманитарий, не разберусь»</span></div>
+        <div class="obj-a"><span class="obj-mk">✓</span><span>Я тоже. Разобралась я – разберёшься и ты.</span></div>
+      </div>
+      <div class="obj-card reveal">
+        <div class="obj-q"><span class="obj-badge">?</span><span>«Нет времени»</span></div>
+        <div class="obj-a"><span class="obj-mk">✓</span><span>Практикум – 90 минут. Дальше система освобождает время, а не отнимает.</span></div>
+      </div>
+      <div class="obj-card reveal">
+        <div class="obj-q"><span class="obj-badge">?</span><span>«Опять про заработок на ИИ»</span></div>
+        <div class="obj-a"><span class="obj-mk">✓</span><span>Нет. Про то, чтобы делать своё дело проще – в своём стиле.</span></div>
+      </div>
     </div>
 
     <figure class="manifest reveal">
