@@ -77,8 +77,12 @@ a{color:inherit}
 .pill .dot{width:9px;height:9px;border-radius:50%;background:var(--pink);flex-shrink:0}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:11px;cursor:pointer;border:none;
   font-family:inherit;font-weight:700;font-size:16px;min-height:56px;padding:0 32px;border-radius:999px;
-  background:var(--grad);color:#fff;text-decoration:none;transition:transform .18s ease, box-shadow .18s ease;
+  background:linear-gradient(100deg,#E6198C 0%,#B23AE0 22%,#FF6B57 42%,#B23AE0 62%,#E6198C 84%,#B23AE0 100%);
+  background-size:230% 100%;animation:btnflow 5s ease-in-out infinite;
+  color:#fff;text-decoration:none;transition:transform .18s ease, box-shadow .18s ease;
   box-shadow:0 16px 34px -16px rgba(230,25,140,.55)}
+@keyframes btnflow{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+.btn-ghost{animation:none}
 .btn:hover{transform:translateY(-2px);box-shadow:0 22px 44px -16px rgba(230,25,140,.6)}
 .btn .arw{transition:transform .18s ease}
 .btn:hover .arw{transform:translateX(4px)}
@@ -176,7 +180,7 @@ a{color:inherit}
 .unit span{font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--pink-strong);opacity:.7;margin-top:7px;display:block}
 @keyframes pulse{0%,100%{box-shadow:0 8px 22px -14px rgba(230,25,140,.35);transform:translateY(0)}
   50%{box-shadow:0 14px 34px -10px rgba(230,25,140,.6);transform:translateY(-2px)}}
-@media (prefers-reduced-motion:reduce){.unit{animation:none}}
+@media (prefers-reduced-motion:reduce){.unit,.btn{animation:none}}
 
 /* таймер + CTA — единый тёмный блок */
 .cta-timer{margin-top:30px;background:var(--dark);color:#fff;border-radius:var(--radius-lg);padding:40px 44px;
