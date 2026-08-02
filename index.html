@@ -117,6 +117,11 @@ a{color:inherit}
 .hero h1{margin-bottom:22px}
 .hero-lead{max-width:540px;margin-bottom:28px;color:var(--ink)}
 .topics{display:flex;flex-wrap:wrap;gap:10px;max-width:560px}
+.hero-cta{display:flex;align-items:center;gap:16px;margin-top:28px;flex-wrap:wrap}
+.date-pill{display:inline-flex;align-items:center;gap:9px;padding:14px 22px;border-radius:999px;background:var(--surface);
+  border:1px solid var(--line);font-weight:600;font-size:15px;box-shadow:var(--shadow)}
+.date-pill .dot{width:9px;height:9px;border-radius:50%;background:var(--pink);flex-shrink:0}
+.date-pill b{color:var(--pink);font-weight:700}
 .hero-visual{position:relative}
 .photo-ph{aspect-ratio:4/5;border-radius:var(--radius-lg);border:2px dashed #E7CFE0;
   background:linear-gradient(160deg,#FFF3FA,#F3EDFD);display:flex;flex-direction:column;
@@ -173,10 +178,24 @@ a{color:inherit}
   50%{box-shadow:0 14px 34px -10px rgba(230,25,140,.6);transform:translateY(-2px)}}
 @media (prefers-reduced-motion:reduce){.unit{animation:none}}
 
-/* таймер + CTA в одном ряду */
-.hero-actions{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:26px;align-items:stretch}
-.hero-actions .count{margin-top:0;flex-direction:column;align-items:flex-start;justify-content:center;gap:18px}
-.hero-actions .ctaband{margin-top:0}
+/* таймер + CTA — единый тёмный блок */
+.cta-timer{margin-top:30px;background:var(--dark);color:#fff;border-radius:var(--radius-lg);padding:40px 44px;
+  display:grid;grid-template-columns:1fr 1fr;align-items:center;position:relative;overflow:hidden}
+.cta-timer::before{content:"";position:absolute;right:-4%;top:-40%;width:520px;height:520px;border-radius:50%;
+  background:radial-gradient(circle,rgba(230,25,140,.34),transparent 70%);pointer-events:none}
+.ct-left{position:relative;z-index:1;padding-right:44px}
+.ct-right{position:relative;z-index:1;padding-left:44px;border-left:1px solid rgba(255,255,255,.12)}
+.ct-when{font-weight:700;font-size:18px}
+.ct-when b{color:#FF6AB0}
+.ct-sub{font-size:15px;color:#C9BFD6;margin:5px 0 20px}
+.cta-timer .clock{display:flex;gap:12px}
+.cta-timer .unit{min-width:74px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.16)}
+.cta-timer .unit b{color:#FF6AB0}
+.cta-timer .unit span{color:#C4B9D2;opacity:.9}
+.ct-right h2{font-size:26px;margin-bottom:10px}
+.ct-right p{color:#CFC6D6;margin-bottom:22px;max-width:440px}
+.ct-right .btn{margin-bottom:12px}
+.ct-right .fine{color:#B4AAC0;opacity:1;display:block}
 
 /* ---------- CTA band (dark inset card) ---------- */
 .ctaband{margin-top:24px;background:var(--dark);color:#fff;border-radius:var(--radius);padding:36px 40px;
@@ -294,7 +313,11 @@ footer{background:var(--dark);color:#CFC7D7;padding:56px 0 34px}
   .sec{padding:66px 0}
   .hero-grid{grid-template-columns:1fr}
   .hero-visual{order:-1}
-  .cards,.ba,.tariffs,.obj,.foot-grid,.mins-grid,.hero-actions{grid-template-columns:1fr}
+  .cards,.ba,.tariffs,.obj,.foot-grid,.mins-grid{grid-template-columns:1fr}
+  .cta-timer{grid-template-columns:1fr;padding:28px 24px}
+  .ct-left{padding-right:0;padding-bottom:24px}
+  .ct-right{padding-left:0;padding-top:24px;border-left:none;border-top:1px solid rgba(255,255,255,.12)}
+  .cta-timer .unit{min-width:0;flex:1}
   .speaker{grid-template-columns:1fr;text-align:center;justify-items:center}
   .count{flex-direction:column;align-items:flex-start}
   .clock{width:100%;justify-content:space-between}
@@ -313,10 +336,6 @@ footer{background:var(--dark);color:#CFC7D7;padding:56px 0 34px}
       <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.26L22 9.27l-5 4.87L18.18 22 12 18.56 5.82 22 7 14.14l-5-4.87 7.1-1.01z"/></svg>
       FitStars
     </div>
-    <div class="hdr-cta">
-      <span class="when"><b>19 августа</b> · 18:00 мск</span>
-      <a href="#tariffs" class="btn btn-sm">Зарегистрироваться</a>
-    </div>
   </div>
 </header>
 
@@ -328,6 +347,10 @@ footer{background:var(--dark);color:#CFC7D7;padding:56px 0 34px}
         <span class="label">Онлайн-практикум · разбор вживую</span>
         <h1>Практикум<br><span class="accent"><span class="nw">«ИИ-помощник</span><br><span class="nw">в твоём деле»</span></span></h1>
         <p class="hero-lead">Разбираем ChatGPT вживую: за 90 минут пишем живой пост и собираем карусель – без кода, без дизайнера и без «я не технарь». Уходишь не с теорией, а с готовыми результатами в своём стиле.</p>
+        <div class="hero-cta">
+          <span class="date-pill"><span class="dot"></span><b>19 августа</b> · 18:00 мск</span>
+          <a href="#tariffs" class="btn">Зарегистрироваться <span class="arw">→</span></a>
+        </div>
       </div>
       <div class="hero-visual">
         <div class="photo-ph" aria-hidden="true">
@@ -357,12 +380,10 @@ footer{background:var(--dark);color:#CFC7D7;padding:56px 0 34px}
       <div class="mins-item full reveal"><span class="ck">🎁</span><span>Заберёшь <b>подарок в конце</b>: промпт «чем ИИ полезен лично тебе»</span></div>
     </div>
 
-    <div class="hero-actions reveal">
-      <div class="count">
-        <div class="count-when">
-          Практикум пройдёт <b>19 августа в 18:00 (мск)</b>
-          <span class="sub">Успей забронировать место до старта практикума</span>
-        </div>
+    <div class="cta-timer reveal">
+      <div class="ct-left">
+        <div class="ct-when">Практикум пройдёт <b>19 августа в 18:00 (мск)</b></div>
+        <div class="ct-sub">Успей забронировать место до старта практикума</div>
         <div class="clock">
           <div class="unit"><b id="cd-d">00</b><span>дней</span></div>
           <div class="unit"><b id="cd-h">00</b><span>часов</span></div>
@@ -370,15 +391,11 @@ footer{background:var(--dark);color:#CFC7D7;padding:56px 0 34px}
           <div class="unit"><b id="cd-s">00</b><span>секунд</span></div>
         </div>
       </div>
-      <div class="ctaband">
-        <div>
-          <h2>Готов начать?</h2>
-          <p>Мест немного – практикум камерный, с разбором вживую. Выбери формат участия и оставь контакты на следующем шаге.</p>
-        </div>
-        <div class="side">
-          <a href="#tariffs" class="btn">Зарегистрироваться <span class="arw">→</span></a>
-          <span class="fine">После регистрации вы получите «Гайд по быстрой регистрации в ИИ»</span>
-        </div>
+      <div class="ct-right">
+        <h2>Готов начать?</h2>
+        <p>Мест немного – практикум камерный, с разбором вживую. Выбери формат участия и оставь контакты на следующем шаге.</p>
+        <a href="#tariffs" class="btn">Зарегистрироваться <span class="arw">→</span></a>
+        <span class="fine">После регистрации вы получите «Гайд по быстрой регистрации в ИИ»</span>
       </div>
     </div>
   </div>
