@@ -617,6 +617,14 @@ footer{background:var(--dark);color:#CFC7D7;padding:56px 0 34px}
     m.textContent=p(Math.floor(diff%3600000/60000));s.textContent=p(Math.floor(diff%60000/1000));}
   tick();setInterval(tick,1000);
 })();
+
+// авто-высота при встраивании в iframe (Tilda, вариант «ссылка с GitHub»)
+(function(){
+  function h(){try{parent.postMessage({fsaiHeight:document.documentElement.scrollHeight},'*')}catch(e){}}
+  window.addEventListener('load',h);window.addEventListener('resize',h);
+  if(window.ResizeObserver){try{new ResizeObserver(h).observe(document.body)}catch(e){}}
+  setInterval(h,1200);
+})();
 </script>
 </body>
 </html>
