@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Чем ИИ полезен именно тебе · практикум FitStars</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{--magenta:#E6198C;--ink:#211829;--dark:#1B1420;--wash:#FBF4F8;--line:#ECE1EC;
+    --grad:linear-gradient(100deg,#E6198C 0%,#B23AE0 52%,#FF6B57 100%);}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'Manrope',sans-serif;color:var(--ink);background:var(--wash);line-height:1.5}
+  .wrap{max-width:760px;margin:0 auto;padding:40px 22px 80px}
+  .kick{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--magenta)}
+  h1{font-family:'Unbounded',sans-serif;font-weight:800;font-size:clamp(30px,5vw,46px);line-height:1.05;margin:10px 0 14px;text-wrap:balance}
+  h1 .g{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+  .lead{font-size:17px;color:#4a3d48;margin-bottom:26px;text-wrap:pretty}
+  .card{background:#fff;border:1px solid var(--line);border-radius:24px;padding:24px;box-shadow:0 18px 44px -30px rgba(120,20,90,.28)}
+  label{display:block;font-weight:700;font-size:15px;margin:16px 0 6px}
+  label:first-child{margin-top:0}
+  .fieldwrap{position:relative}
+  textarea,input{width:100%;font-family:'Manrope',sans-serif;font-size:16px;color:var(--ink);border:1px solid var(--line);border-radius:14px;padding:12px 14px;background:#fff;resize:vertical}
+  textarea{padding-right:52px}
+  textarea:focus,input:focus{outline:none;border-color:var(--magenta)}
+  .mic{position:absolute;right:8px;top:8px;width:38px;height:38px;border-radius:11px;border:1px solid var(--line);background:#fff;cursor:pointer;font-size:17px;display:flex;align-items:center;justify-content:center}
+  .mic.on{background:var(--magenta);border-color:var(--magenta)}
+  .mic.on::after{content:"";position:absolute;inset:-4px;border-radius:14px;border:2px solid rgba(230,25,140,.4);animation:pulse 1s infinite}
+  @keyframes pulse{0%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(1.25)}}
+  .btn{font-family:'Manrope',sans-serif;font-weight:700;font-size:16px;border:none;border-radius:999px;padding:14px 22px;cursor:pointer;color:#fff;background:var(--grad);background-size:200% 100%;transition:.3s}
+  .btn:hover{background-position:100% 0}
+  .btn.ghost{background:#fff;color:var(--ink);border:1px solid var(--line)}
+  .btn.wide{width:100%;margin-top:20px}
+  .hint{font-size:13px;color:#9a8d98;margin-top:12px}
+
+  #result{margin-top:30px;display:none}
+  .greet{font-size:18px;font-weight:700;margin-bottom:6px}
+  .greet b{color:var(--magenta)}
+  .rsub{color:#6a5d68;margin-bottom:20px}
+  .lvl{border:1px solid var(--line);border-radius:20px;padding:20px 22px;margin:14px 0;background:#fff;position:relative;overflow:hidden}
+  .lvl .tag{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#fff;background:var(--grad);padding:5px 12px;border-radius:999px;margin-bottom:10px}
+  .lvl h3{font-family:'Unbounded',sans-serif;font-weight:700;font-size:20px;margin-bottom:8px}
+  .lvl p{color:#33283b}
+  .lvl ul{margin:10px 0 0 2px;list-style:none}
+  .lvl li{padding:6px 0 6px 26px;position:relative;color:#33283b}
+  .lvl li::before{content:"→";position:absolute;left:0;color:var(--magenta);font-weight:700}
+  .lvl.course{border:2px solid var(--magenta);background:linear-gradient(100deg,#FFF1F8,#F2EAFE)}
+  .lvl.course .ribbon{position:absolute;top:14px;right:-34px;transform:rotate(45deg);background:var(--magenta);color:#fff;font-size:11px;font-weight:700;padding:4px 40px;letter-spacing:.05em}
+  .promptbox{margin-top:24px;background:var(--dark);color:#f3e6ee;border-radius:18px;padding:20px}
+  .promptbox .t{font-weight:700;color:#ff7ac2;margin-bottom:8px}
+  .promptbox pre{white-space:pre-wrap;font-family:'Manrope',sans-serif;font-size:14px;line-height:1.5;color:#eddce6}
+  .promptbox .btn{margin-top:14px}
+  .foot{text-align:center;color:#9a8d98;font-size:13px;margin-top:30px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="kick">FitStars · практикум по ИИ</div>
+  <h1>Чем ИИ полезен <span class="g">именно тебе</span></h1>
+  <p class="lead">Поной пару минут — чем занимаешься, что бесит и жрёт время, что бы с радостью не делал руками. Я соберу твою личную карту: чем ИИ поможет — по уровням, от «уже сегодня в чате» до «своей системы».</p>
+
+  <div class="card">
+    <label>Чем ты занимаешься?</label>
+    <input id="job" type="text" placeholder="Напр: веду блог о питании / бухгалтер / репетитор">
+
+    <label>Что в работе бесит? Что бы ты с радостью НЕ делал руками?</label>
+    <div class="fieldwrap"><textarea id="hate" rows="3" placeholder="Наговори или напиши — можно списком"></textarea><button class="mic" data-for="hate" title="наговорить">🎤</button></div>
+
+    <label>Что занимает кучу времени?</label>
+    <div class="fieldwrap"><textarea id="time" rows="3" placeholder="Наговори или напиши"></textarea><button class="mic" data-for="time" title="наговорить">🎤</button></div>
+
+    <button class="btn wide" id="go">Собрать мою карту</button>
+    <div class="hint">🎤 — можно наговорить голосом (работает в Chrome). Ничего не отправляется — всё считается прямо у тебя.</div>
+  </div>
+
+  <div id="result"></div>
+  <div class="foot">Мини-помощник практикума «Как делать своё дело легко и в удовольствие»</div>
+</div>
+
+<script>
+const $=s=>document.querySelector(s);
+// voice input
+document.querySelectorAll('.mic').forEach(btn=>{
+  const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+  if(!SR){btn.style.display='none';return;}
+  let rec,on=false;
+  btn.onclick=()=>{
+    const ta=document.getElementById(btn.dataset.for);
+    if(on){rec.stop();return;}
+    rec=new SR();rec.lang='ru-RU';rec.interimResults=false;rec.continuous=true;
+    rec.onresult=e=>{let t='';for(let i=e.resultIndex;i<e.results.length;i++)t+=e.results[i][0].transcript;ta.value=(ta.value?ta.value+' ':'')+t.trim();};
+    rec.onend=()=>{on=false;btn.classList.remove('on');};
+    rec.start();on=true;btn.classList.add('on');
+  };
+});
+
+function items(t){return (t||"").split(/[\n;,•·]+|(?:\.\s)/).map(s=>s.trim()).filter(s=>s.length>2);}
+
+$("#go").onclick=()=>{
+  const job=$("#job").value.trim();
+  const pains=[...items($("#hate").value),...items($("#time").value)];
+  const list = pains.length?pains:["рутинные задачи, которые повторяются каждый день"];
+  const li = list.slice(0,5).map(p=>`<li>${esc(p)}</li>`).join("");
+
+  const levels=[
+    {tag:"Уровень 1 · сейчас, в чате",h:"Снять рутину уже сегодня",p:"Вот это ты можешь начать решать в обычном чате с ИИ — прямо сегодня, без всякой техники:",listHtml:`<ul>${li}</ul>`},
+    {tag:"Уровень 2 · со временем, твой стиль",h:"Научить ИИ делать по-твоему",p:"Собрать свои подходы и методы: чтобы ИИ отвечал в твоём стиле и по твоим правилам, а не усреднённо."},
+    {tag:"Уровень 3 · дальше, автоматизация",h:"Собрать помощников и связки",p:"Повторяющееся вынести в готовых помощников и процессы — чтобы не начинать каждый раз с нуля."},
+    {tag:"Уровень 4 · вершина, своя система",h:"Всё на потоке — твоя система",p:"ИИ работает в твоих файлах и задачах, рутину забирает система. Именно так мы собираем её шаг за шагом на курсе.",course:true},
+  ];
+  const cards=levels.map(l=>`<div class="lvl${l.course?' course':''}">${l.course?'<div class="ribbon">на курсе</div>':''}
+    <span class="tag">${l.tag}</span><h3>${l.h}</h3><p>${l.p}</p>${l.listHtml||''}</div>`).join("");
+
+  const prompt=`Я ${job||"[моя профессия]"}. Меня бесит и отнимает время: ${pains.join("; ")||"[что бесит]"}.
+Разложи, чем ИИ может мне помочь, по 4 уровням развития навыка:
+1) что я уже сегодня могу делать в обычном чате;
+2) как научить ИИ работать в моём стиле (мои подходы и методы);
+3) что можно автоматизировать в готовых помощников;
+4) как собрать из этого свою рабочую систему.
+По каждому уровню — конкретно под мои задачи, по-человечески, без воды.`;
+
+  $("#result").innerHTML=`
+    <div class="greet">Готово${job?`, <b>${esc(job)}</b>`:''}!</div>
+    <div class="rsub">Вот твоя карта — чем ИИ полезен именно тебе, по уровням:</div>
+    ${cards}
+    <div class="promptbox"><div class="t">Хочешь разбор от ИИ под твои задачи?</div>
+      <pre id="pr">${esc(prompt)}</pre>
+      <button class="btn" id="copy">Скопировать промпт для своей ИИ</button></div>`;
+  $("#result").style.display="block";
+  $("#copy").onclick=()=>{navigator.clipboard.writeText(prompt).then(()=>{$("#copy").textContent="Скопировано ✓";});};
+  $("#result").scrollIntoView({behavior:"smooth"});
+};
+function esc(t){return (t||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+</script>
+</body>
+</html>
