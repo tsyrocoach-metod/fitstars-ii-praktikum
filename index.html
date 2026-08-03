@@ -293,11 +293,18 @@ a{color:inherit}
 .manifest blockquote{font-family:'Unbounded',sans-serif;font-weight:800;font-size:var(--h2);letter-spacing:-.02em;line-height:1.09}
 
 /* ---------- сноска «сайт собран на ИИ» ---------- */
-.meta-note{max-width:720px;margin:0 auto;padding:48px 24px;text-align:center}
-.meta-note .mn-ic{font-size:26px;display:block;margin-bottom:10px}
-.meta-note p{font-size:15.5px;color:#6F6678;line-height:1.65}
-.meta-note a{color:var(--pink);font-weight:700;text-decoration:none}
-.meta-note a:hover{text-decoration:underline}
+.meta-note{max-width:960px;margin:0 auto;padding:56px 24px}
+.mn-card{display:flex;align-items:center;gap:22px;padding:24px 28px;border-radius:var(--radius-lg);
+  background:linear-gradient(100deg,#FFF1F8,#F2EAFE);border:1px solid #F1D9EC;box-shadow:var(--shadow);
+  position:relative;overflow:hidden}
+.mn-card::before{content:"";position:absolute;right:-40px;top:-70px;width:230px;height:230px;border-radius:50%;
+  background:radial-gradient(circle,rgba(230,25,140,.14),transparent 70%);pointer-events:none}
+.mn-ic{flex-shrink:0;width:56px;height:56px;border-radius:16px;background:#FCE6F1;border:1px solid #F6CFE2;
+  display:flex;align-items:center;justify-content:center;font-size:27px;position:relative;z-index:1}
+.mn-body{flex:1;position:relative;z-index:1}
+.mn-body .label{display:block;margin-bottom:5px}
+.mn-body p{color:var(--ink);font-weight:500;font-size:16px;line-height:1.5}
+.mn-btn{flex-shrink:0;position:relative;z-index:1;white-space:nowrap}
 
 /* ---------- footer ---------- */
 footer{background:var(--dark);color:#CFC7D7;padding:56px 0 34px}
@@ -347,6 +354,9 @@ footer{background:var(--dark);color:#CFC7D7;padding:56px 0 34px}
   .unit{min-width:0;flex:1}
   .hdr .when{display:none}
   .foot-legal{flex-direction:column}
+  .meta-note{padding:44px 20px}
+  .mn-card{flex-direction:column;text-align:center;gap:16px;padding:26px 22px}
+  .mn-btn{width:100%}
 }
 </style>
 </head>
@@ -536,8 +546,14 @@ footer{background:var(--dark);color:#CFC7D7;padding:56px 0 34px}
 
 <!-- ===== сноска: сайт собран на ИИ ===== -->
 <div class="meta-note reveal">
-  <span class="mn-ic">✨</span>
-  <p>Даже этот сайт мы собрали командой с помощью ИИ – примерно за пару часов и без дизайнеров. <a href="#tariffs">Хочешь так же? Тогда тебе точно к нам →</a></p>
+  <div class="mn-card">
+    <div class="mn-ic">✨</div>
+    <div class="mn-body">
+      <span class="label">Сделано на ИИ</span>
+      <p>Даже этот сайт мы собрали командой с помощью ИИ – примерно за пару часов и без дизайнеров. Хочешь так же? Тогда тебе точно к нам.</p>
+    </div>
+    <a href="#tariffs" class="btn btn-sm mn-btn">Хочу так же <span class="arw">→</span></a>
+  </div>
 </div>
 
 <!-- ===== footer ===== -->
