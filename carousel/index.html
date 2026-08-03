@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Редактор каруселей · ИИ-практикум FitStars</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<style>
+  :root{
+    --magenta:#E6198C; --magenta-dark:#C0116E; --ink:#211829; --dark:#1B1420;
+    --wash:#FBF4F8; --line:#ECE1EC; --grad:linear-gradient(100deg,#E6198C 0%,#B23AE0 52%,#FF6B57 100%);
+    --radius:20px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'Manrope',sans-serif;color:var(--ink);background:var(--wash);}
+  .top{background:#fff;border-bottom:1px solid var(--line);padding:18px 26px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+  .top .kick{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--magenta)}
+  .top h1{font-family:'Unbounded',sans-serif;font-weight:800;font-size:20px}
+  .top p{font-size:13px;color:#7a6d78;flex:1;min-width:200px}
+  .app{display:grid;grid-template-columns:420px 1fr;gap:0;min-height:calc(100vh - 70px)}
+  .panel{background:#fff;border-right:1px solid var(--line);padding:22px;overflow-y:auto;max-height:calc(100vh - 70px)}
+  .stage{padding:26px;overflow-y:auto;max-height:calc(100vh - 70px)}
+  label{display:block;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#8a7d88;margin:14px 0 6px}
+  input,textarea{width:100%;font-family:'Manrope',sans-serif;font-size:15px;color:var(--ink);border:1px solid var(--line);border-radius:12px;padding:11px 13px;background:#fff;resize:vertical}
+  input:focus,textarea:focus{outline:none;border-color:var(--magenta)}
+  .card{border:1px solid var(--line);border-radius:var(--radius);padding:14px;margin:12px 0;background:var(--wash)}
+  .card .hd{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px}
+  .card .hd b{font-family:'Unbounded',sans-serif;font-size:13px}
+  .card .hd .tag{font-size:11px;font-weight:700;color:var(--magenta);text-transform:uppercase;letter-spacing:.08em}
+  .row{display:flex;gap:6px}
+  .btn{font-family:'Manrope',sans-serif;font-weight:700;font-size:14px;border:none;border-radius:999px;padding:11px 18px;cursor:pointer;color:#fff;background:var(--grad);background-size:200% 100%;transition:.3s}
+  .btn:hover{background-position:100% 0}
+  .btn.ghost{background:#fff;color:var(--ink);border:1px solid var(--line)}
+  .btn.sm{padding:7px 12px;font-size:12px}
+  .mini{width:30px;height:30px;border-radius:9px;border:1px solid var(--line);background:#fff;cursor:pointer;font-size:14px;color:var(--ink);display:inline-flex;align-items:center;justify-content:center}
+  .mini:hover{border-color:var(--magenta);color:var(--magenta)}
+  .actions{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap}
+  .hint{font-size:12px;color:#9a8d98;margin-top:10px;line-height:1.5}
+
+  /* preview grid */
+  .thumbs{display:flex;flex-wrap:wrap;gap:22px}
+  .thumbwrap{width:300px}
+  .thumb{width:300px;height:375px;border-radius:16px;overflow:hidden;box-shadow:0 18px 44px -26px rgba(120,20,90,.35);border:1px solid var(--line);background:#fff}
+  .thumb .slide{transform:scale(.27778);transform-origin:top left}
+  .thumbwrap .tb{display:flex;align-items:center;justify-content:space-between;margin-top:8px}
+  .thumbwrap .tb span{font-size:12px;color:#8a7d88;font-weight:600}
+
+  /* SLIDE (real size 1080x1350) */
+  #render{position:absolute;left:-99999px;top:0}
+  .slide{width:1080px;height:1350px;position:relative;background:#fff;overflow:hidden;font-family:'Manrope',sans-serif;color:var(--ink)}
+  .slide .glow{position:absolute;inset:0;pointer-events:none;
+    background:radial-gradient(circle at 82% 12%, rgba(230,25,140,.16), transparent 60%),radial-gradient(circle at 12% 92%, rgba(178,58,224,.12), transparent 62%)}
+  .slide .pad{position:absolute;inset:0;padding:96px 92px;display:flex;flex-direction:column}
+  .slide .kicker{font-size:27px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--magenta);margin-bottom:28px}
+  .slide .foot{margin-top:auto;display:flex;align-items:center;justify-content:space-between;font-size:30px;font-weight:600;color:#9a8d98}
+  .slide .foot .dot{display:inline-block;width:16px;height:16px;border-radius:50%;background:var(--magenta);margin-right:12px;vertical-align:middle}
+  /* cover */
+  .slide.cover{background:linear-gradient(160deg,#FFF1F8 0%,#F2EAFE 100%)}
+  .slide.cover .title{font-family:'Unbounded',sans-serif;font-weight:800;font-size:96px;line-height:1.04;letter-spacing:-.01em;text-wrap:balance}
+  .slide.cover .bar{width:150px;height:14px;border-radius:999px;background:var(--grad);margin:40px 0 34px}
+  .slide.cover .sub{font-size:44px;font-weight:500;line-height:1.32;color:#4a3d48;text-wrap:pretty}
+  /* content */
+  .slide .num{font-family:'Unbounded',sans-serif;font-weight:800;font-size:128px;line-height:1;background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:20px}
+  .slide .head{font-family:'Manrope',sans-serif;font-weight:800;font-size:62px;line-height:1.12;margin-bottom:34px;text-wrap:balance}
+  .slide .body{font-size:44px;font-weight:400;line-height:1.42;color:#33283b;text-wrap:pretty;white-space:pre-wrap}
+</style>
+</head>
+<body>
+  <div class="top">
+    <div>
+      <div class="kick">FitStars · практикум по ИИ</div>
+      <h1>Редактор каруселей</h1>
+    </div>
+    <p>Вводишь текст — получаешь карусель в стиле практикума. Без дизайнера. Скачай слайды картинками для поста.</p>
+  </div>
+
+  <div class="app">
+    <div class="panel">
+      <label>Подпись на слайдах (ник / имя)</label>
+      <input id="brand" placeholder="@ваш_ник" value="@fitstars">
+      <label>Метка на обложке</label>
+      <input id="kicker" placeholder="Напр: ПРАКТИКУМ ПО ИИ" value="ПРАКТИКУМ ПО ИИ">
+
+      <div id="slides"></div>
+
+      <button class="btn ghost sm" id="add" style="margin-top:6px">+ Добавить слайд</button>
+
+      <div class="actions">
+        <button class="btn" id="dlall">Скачать все слайды</button>
+      </div>
+      <div class="hint">Слайд 1 — обложка (крючок). Формат 4:5 (1080×1350) под пост/карусель. Скачивание — PNG.</div>
+    </div>
+
+    <div class="stage">
+      <div class="thumbs" id="thumbs"></div>
+    </div>
+  </div>
+
+  <div id="render"></div>
+
+<script>
+const state = {
+  brand:"@fitstars",
+  kicker:"ПРАКТИКУМ ПО ИИ",
+  slides:[
+    {type:"cover", title:"ИИ, который пишет в твоём стиле", body:"5 шагов, чтобы посты звучали как ты, а не как робот"},
+    {type:"content", title:"Проблема", body:"ИИ из коробки пишет «средне» — потому что не знает тебя и твою аудиторию."},
+    {type:"content", title:"Что делать", body:"Собери короткую инструкцию: твой тон + для кого пишешь + примеры."},
+    {type:"content", title:"Результат", body:"Пост выходит живым и в твоём голосе — почти без правок руками."},
+  ]
+};
+
+const $ = s=>document.querySelector(s);
+const slidesEl = $("#slides"), thumbsEl = $("#thumbs"), renderEl = $("#render");
+
+function slideNode(s, i, total){
+  const el = document.createElement("div");
+  el.className = "slide " + (s.type==="cover"?"cover":"content");
+  const glow = '<div class="glow"></div>';
+  let inner="";
+  if(s.type==="cover"){
+    inner = `<div class="kicker">${esc(state.kicker)}</div>
+      <div class="title">${esc(s.title)}</div>
+      <div class="bar"></div>
+      <div class="sub">${esc(s.body)}</div>
+      <div class="foot"><span><span class="dot"></span>листай →</span><span>${esc(state.brand)}</span></div>`;
+  } else {
+    inner = `<div class="num">${String(i).padStart(2,"0")}</div>
+      <div class="head">${esc(s.title)}</div>
+      <div class="body">${esc(s.body)}</div>
+      <div class="foot"><span>${esc(state.brand)}</span><span>${i} / ${total-1}</span></div>`;
+  }
+  el.innerHTML = glow + '<div class="pad">'+inner+'</div>';
+  return el;
+}
+function esc(t){return (t||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+
+function renderAll(){
+  renderEl.innerHTML=""; thumbsEl.innerHTML="";
+  state.slides.forEach((s,idx)=>{
+    const node = slideNode(s, idx, state.slides.length);
+    node.id = "slide"+idx;
+    renderEl.appendChild(node);
+    // thumb
+    const wrap=document.createElement("div"); wrap.className="thumbwrap";
+    const th=document.createElement("div"); th.className="thumb";
+    const clone=node.cloneNode(true); clone.id="";
+    th.appendChild(clone); wrap.appendChild(th);
+    const tb=document.createElement("div"); tb.className="tb";
+    tb.innerHTML=`<span>${idx===0?"Обложка":"Слайд "+idx}</span>`;
+    const dl=document.createElement("button"); dl.className="btn sm"; dl.textContent="Скачать"; dl.onclick=()=>download(idx);
+    tb.appendChild(dl); wrap.appendChild(tb);
+    thumbsEl.appendChild(wrap);
+  });
+  buildControls();
+}
+
+function buildControls(){
+  slidesEl.innerHTML="";
+  state.slides.forEach((s,idx)=>{
+    const c=document.createElement("div"); c.className="card";
+    c.innerHTML=`<div class="hd"><b>${idx===0?"Обложка":"Слайд "+idx}</b>
+      <span class="tag">${s.type==="cover"?"крючок":"контент"}</span></div>`;
+    const t=document.createElement("input"); t.value=s.title; t.placeholder=idx===0?"Крупный заголовок обложки":"Заголовок слайда";
+    t.oninput=e=>{s.title=e.target.value; renderAll2();};
+    const b=document.createElement("textarea"); b.rows=idx===0?2:3; b.value=s.body; b.placeholder="Текст";
+    b.oninput=e=>{s.body=e.target.value; renderAll2();};
+    c.appendChild(t); c.appendChild(b);
+    if(idx>0){
+      const row=document.createElement("div"); row.className="row"; row.style.marginTop="8px";
+      const up=mini("↑",()=>move(idx,-1)), dn=mini("↓",()=>move(idx,1)), rm=mini("✕",()=>remove(idx));
+      row.append(up,dn,rm); c.appendChild(row);
+    }
+    slidesEl.appendChild(c);
+  });
+}
+function mini(t,fn){const b=document.createElement("button");b.className="mini";b.textContent=t;b.onclick=fn;return b;}
+let rt; function renderAll2(){clearTimeout(rt);rt=setTimeout(renderAll,120);} // debounce, keep focus not needed since inputs are in controls
+function move(i,d){const j=i+d;if(j<1||j>=state.slides.length)return;[state.slides[i],state.slides[j]]=[state.slides[j],state.slides[i]];renderAll();}
+function remove(i){state.slides.splice(i,1);renderAll();}
+
+$("#add").onclick=()=>{state.slides.push({type:"content",title:"Новый слайд",body:"Текст слайда"});renderAll();};
+$("#brand").oninput=e=>{state.brand=e.target.value;renderAll();};
+$("#kicker").oninput=e=>{state.kicker=e.target.value;renderAll();};
+
+async function download(idx){
+  const node=document.getElementById("slide"+idx);
+  await document.fonts.ready;
+  const canvas=await html2canvas(node,{width:1080,height:1350,scale:1,backgroundColor:null,useCORS:true});
+  const a=document.createElement("a");
+  a.download=(idx===0?"cover":"slide-"+idx)+".png";
+  a.href=canvas.toDataURL("image/png"); a.click();
+}
+$("#dlall").onclick=async()=>{
+  for(let i=0;i<state.slides.length;i++){await download(i);await new Promise(r=>setTimeout(r,400));}
+};
+
+renderAll();
+</script>
+</body>
+</html>
