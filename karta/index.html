@@ -11,114 +11,147 @@
     --grad:linear-gradient(100deg,#E6198C 0%,#B23AE0 52%,#FF6B57 100%);}
   *{margin:0;padding:0;box-sizing:border-box}
   body{font-family:'Manrope',sans-serif;color:var(--ink);background:var(--wash);line-height:1.5}
-  .wrap{max-width:820px;margin:0 auto;padding:44px 22px 80px}
+  .wrap{max-width:900px;margin:0 auto;padding:44px 22px 80px}
   .kick{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--magenta)}
-  h1{font-family:'Unbounded',sans-serif;font-weight:800;font-size:clamp(30px,5.4vw,50px);line-height:1.05;margin:10px 0 14px;text-wrap:balance}
+  h1{font-family:'Unbounded',sans-serif;font-weight:800;font-size:clamp(30px,5.4vw,50px);line-height:1.05;margin:10px 0 12px;text-wrap:balance}
   h1 .g{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
-  .lead{font-size:17px;color:#4a3d48;margin-bottom:26px;text-wrap:pretty}
-  .whybox{background:linear-gradient(100deg,#FFF1F8,#F2EAFE);border:1px solid #F1D9EC;border-radius:20px;padding:18px 20px;margin-bottom:26px}
-  .whybox .t{font-weight:800;margin-bottom:6px}
-  .whybox p{font-size:15px;color:#4a3d48}
-  .lvl{background:#fff;border:1px solid var(--line);border-radius:22px;padding:22px 24px;margin:16px 0;box-shadow:0 18px 44px -32px rgba(120,20,90,.26)}
-  .lvl .head{display:flex;align-items:center;gap:12px;margin-bottom:12px}
-  .lvl .n{width:34px;height:34px;border-radius:10px;background:var(--grad);color:#fff;font-family:'Unbounded',sans-serif;font-weight:700;font-size:15px;display:flex;align-items:center;justify-content:center;flex:0 0 auto}
-  .lvl .tag{font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--magenta)}
-  .lvl h3{font-family:'Unbounded',sans-serif;font-weight:700;font-size:21px}
-  .lbl{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#8a7d88;margin:12px 0 6px}
-  .lvl ul{list-style:none;margin:0}
-  .lvl li{padding:5px 0 5px 24px;position:relative;color:#33283b;font-size:15px}
-  .lvl li::before{content:"→";position:absolute;left:0;color:var(--magenta);font-weight:700}
-  .tools{display:flex;flex-direction:column;gap:6px}
-  .tool{font-size:15px;color:#33283b}
-  .tool b{font-weight:700}
-  .lvl4{border:2px solid var(--magenta);background:linear-gradient(100deg,#FFF7FB,#FBF6FF)}
-  .media{background:#1B1420;color:#f3e6ee;border-radius:20px;padding:20px 24px;margin:16px 0}
-  .media .tag{color:#ff7ac2;font-weight:700;font-size:12px;letter-spacing:.06em;text-transform:uppercase}
-  .media h3{font-family:'Unbounded',sans-serif;font-weight:700;font-size:20px;margin:6px 0 8px}
-  .media p{color:#eddce6;font-size:15px}
-  .principles{margin-top:30px;background:#fff;border:1px solid var(--line);border-radius:22px;padding:24px}
-  .principles h2{font-family:'Unbounded',sans-serif;font-weight:800;font-size:24px;margin-bottom:12px;text-wrap:balance}
-  .principles li{padding:7px 0 7px 26px;position:relative;color:#33283b}
-  .principles li::before{content:"✓";position:absolute;left:0;color:var(--magenta);font-weight:700}
-  .principles .cta{margin-top:14px;font-weight:700;color:var(--magenta)}
-  .foot{text-align:center;color:#9a8d98;font-size:13px;margin-top:30px}
+  .lead{font-size:17px;color:#4a3d48;margin-bottom:22px;text-wrap:pretty}
+
+  .controls{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+  .hintline{font-size:13px;color:#9a8d98}
+  .toggle{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:600;cursor:pointer;user-select:none;border:1px solid var(--line);border-radius:999px;padding:7px 14px;background:#fff}
+  .toggle input{display:none}
+  .toggle .sw{width:36px;height:20px;border-radius:999px;background:#e2d7e0;position:relative;transition:.2s}
+  .toggle .sw::after{content:"";position:absolute;top:2px;left:2px;width:16px;height:16px;border-radius:50%;background:#fff;transition:.2s;box-shadow:0 1px 3px rgba(0,0,0,.2)}
+  .toggle input:checked + .sw{background:var(--magenta)}
+  .toggle input:checked + .sw::after{left:18px}
+
+  .chips{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:22px}
+  .chip{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);background:#fff;border-radius:999px;padding:11px 16px;cursor:pointer;font-weight:700;font-size:14.5px;color:var(--ink);transition:.18s}
+  .chip .em{font-size:18px}
+  .chip:hover{border-color:var(--magenta);transform:translateY(-2px)}
+  .chip.on{background:var(--grad);background-size:200% 100%;color:#fff;border-color:transparent;box-shadow:0 12px 30px -14px rgba(230,25,140,.6)}
+
+  .panel{background:#fff;border:1px solid var(--line);border-radius:24px;padding:24px;box-shadow:0 20px 50px -34px rgba(120,20,90,.3);min-height:260px}
+  .panel .ph{display:flex;align-items:center;gap:14px;margin-bottom:6px}
+  .panel .ph .big{font-size:34px}
+  .panel h2{font-family:'Unbounded',sans-serif;font-weight:700;font-size:24px}
+  .panel .desc{color:#6a5d68;margin-bottom:18px}
+  .tools{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px}
+  .tool{border:1px solid var(--line);border-radius:16px;padding:15px 16px;background:var(--wash);transition:.18s;animation:pop .3s ease}
+  .tool:hover{transform:translateY(-3px);border-color:#f0c9e0;box-shadow:0 14px 30px -20px rgba(120,20,90,.4)}
+  @keyframes pop{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  .tool .nm{font-weight:800;font-size:16px;margin-bottom:4px}
+  .tool .s{font-size:14px;color:#4a3d48;margin-bottom:10px}
+  .badges{display:flex;flex-wrap:wrap;gap:6px}
+  .b{font-size:11px;font-weight:700;border-radius:999px;padding:3px 9px}
+  .b.lvl{color:var(--magenta);background:#FCE6F1}
+  .b.ru{color:#1FA24E;background:#EAF7EE}
+  .b.free{color:#7a4bd0;background:#EFEAFE}
+  .empty{color:#9a8d98;padding:20px 0}
+
+  .principles{margin-top:30px;background:#1B1420;color:#f3e6ee;border-radius:24px;padding:26px}
+  .principles .tag{color:#ff7ac2;font-weight:700;font-size:12px;letter-spacing:.08em;text-transform:uppercase}
+  .principles h2{font-family:'Unbounded',sans-serif;font-weight:800;font-size:24px;margin:8px 0 12px;color:#fff;text-wrap:balance}
+  .principles li{padding:7px 0 7px 26px;position:relative;color:#eddce6}
+  .principles li::before{content:"✓";position:absolute;left:0;color:#ff7ac2;font-weight:700}
+  .principles .cta{margin-top:14px;font-weight:700;color:#ff9ad0}
+  .note{font-size:13px;color:#9a8d98;margin-top:16px;text-align:center}
+  .foot{text-align:center;color:#9a8d98;font-size:13px;margin-top:20px}
 </style>
 </head>
 <body>
 <div class="wrap">
   <div class="kick">FitStars · практикум по ИИ</div>
-  <h1>Карта нейросетей: <span class="g">с чего начать и куда расти</span></h1>
-  <p class="lead">Не «какая нейросеть лучшая» — это миф, они меняются каждый месяц. Важнее понимать, что можно делать на каждом уровне и в чём каждая сильна. Тогда ты выбираешь инструмент под задачу, а не наугад.</p>
+  <h1>Карта нейросетей: <span class="g">что где делать</span></h1>
+  <p class="lead">Выбери задачу — покажу, какими нейросетями её делать и в чём каждая сильна. «Лучшей» нейросети нет: важнее понимать, что под какую задачу и как это работает.</p>
 
-  <div class="whybox">
-    <div class="t">Главная мысль</div>
-    <p>Инструмент — вторичен. Первично — навык: понимать, как ИИ «думает», где врёт, как настроить под себя. Этот навык переносится на любую нейросеть. Ниже — карта, с чего начать и куда двигаться.</p>
+  <div class="controls">
+    <div class="hintline">👇 Жми на задачу — раскроется</div>
+    <label class="toggle"><input type="checkbox" id="ruonly"><span class="sw"></span>Только без VPN</label>
   </div>
 
-  <div class="lvl">
-    <div class="head"><div class="n">1</div><div><div class="tag">Первые шаги · без VPN, бесплатно</div><h3>Простые задачи каждый день</h3></div></div>
-    <div class="lbl">Что можно делать</div>
-    <ul><li>Задать вопрос, найти и объяснить информацию</li><li>Написать и переписать текст, письмо, пост</li><li>Спланировать день, поездку, помочь с учёбой и бытом</li></ul>
-    <div class="lbl">Чем — и в чём сильны</div>
-    <div class="tools">
-      <div class="tool"><b>GigaChat, Алиса / YandexGPT</b> — по-русски, без VPN, для быта и первых шагов</div>
-      <div class="tool"><b>DeepSeek, Qwen</b> — сильные и бесплатные, хорошо с текстом и логикой</div>
-      <div class="tool"><b>Perplexity</b> — поиск с ссылками на источники</div>
-    </div>
-  </div>
-
-  <div class="lvl">
-    <div class="head"><div class="n">2</div><div><div class="tag">Рабочий уровень · топ-модели</div><h3>Серьёзная работа и свой стиль</h3></div></div>
-    <div class="lbl">Что можно делать</div>
-    <ul><li>Глубокие тексты, анализ, работа с документами и таблицами</li><li>Настроить ИИ на свой голос, собрать своего помощника</li><li>Проверять факты и держать качество</li></ul>
-    <div class="lbl">Чем — и в чём сильны</div>
-    <div class="tools">
-      <div class="tool"><b>ChatGPT</b> — универсал, работа с файлами, картинки, голос</div>
-      <div class="tool"><b>Claude</b> — длинные тексты, живой стиль, проекты и инструкции</div>
-      <div class="tool"><b>Gemini</b> — экосистема Google, большой объём контекста</div>
-    </div>
-    <div class="lbl">Доступ</div>
-    <ul><li>Топ-модели требуют регистрации и оплаты — как зайти, разбираем отдельно в гайде по доступу</li></ul>
-  </div>
-
-  <div class="lvl">
-    <div class="head"><div class="n">3</div><div><div class="tag">Создавать</div><h3>Визуал, карусели, сайты</h3></div></div>
-    <div class="lbl">Что можно делать</div>
-    <ul><li>Картинки и визуал под свои посты</li><li>Карусели и оформление без дизайнера</li><li>Лендинг, квиз, интерактив — без кода (вайбкодинг)</li></ul>
-    <div class="lbl">Чем — и в чём сильны</div>
-    <div class="tools">
-      <div class="tool"><b>Midjourney, Kandinsky, Шедеврум</b> — картинки и визуал</div>
-      <div class="tool"><b>ChatGPT / Claude + конструкторы</b> — сайты и мини-приложения без кода</div>
-      <div class="tool"><b>ИИ-видео и аватары</b> — динамичный контент (обычно продвинутый уровень)</div>
-    </div>
-  </div>
-
-  <div class="lvl lvl4">
-    <div class="head"><div class="n">4</div><div><div class="tag">Система</div><h3>Агентный ИИ — работа на потоке</h3></div></div>
-    <div class="lbl">Что можно делать</div>
-    <ul><li>ИИ работает в твоих файлах и папках, а не только в чате</li><li>Автоматизировать повторяющуюся работу</li><li>Собрать свою рабочую систему под свои задачи</li></ul>
-    <div class="lbl">Чем — и в чём сильны</div>
-    <div class="tools"><div class="tool"><b>Claude Code / ИИ-агенты</b> — делают реальную работу с документами и процессами</div></div>
-  </div>
-
-  <div class="media">
-    <div class="tag">Важно про уровни</div>
-    <h3>Двигайся снизу вверх</h3>
-    <p>Не перепрыгивай: сначала уверенно на 1–2 уровне, потом создавать и собирать систему. И не привязывайся к одной нейросети — принципы у всех общие, а навык переносится.</p>
-  </div>
+  <div class="chips" id="chips"></div>
+  <div class="panel" id="panel"></div>
 
   <div class="principles">
-    <h2>Почему важно понимать принципы, а не гоняться за инструментом</h2>
+    <div class="tag">Почему это важно</div>
+    <h2>Понимать принципы важнее, чем знать «лучшую» нейросеть</h2>
     <ul>
-      <li>Нейросети меняются каждый месяц — «лучшая» сегодня завтра не лучшая</li>
+      <li>Инструменты меняются каждый месяц — «лучший» сегодня завтра не лучший</li>
       <li>Магического промпта нет: ценно понимать, как модель думает и где врёт</li>
-      <li>Кто понимает принципы — быстро осваивает любую новую нейросеть</li>
+      <li>Кто понимает принципы — осваивает любую новую нейросеть за вечер</li>
       <li>Навык переносится: настроил под себя один раз — повторяешь везде</li>
     </ul>
     <div class="cta">Именно с этого начинается курс: сначала принципы и мышление, потом инструменты и своя система.</div>
   </div>
-
+  <div class="note">Список — ориентир на 2026 год, инструменты обновляются. Проверяй актуальность и доступ.</div>
   <div class="foot">Карта нейросетей · бонус практикума «Как делать своё дело легко и в удовольствие»</div>
 </div>
+
+<script>
+const DATA=[
+ {id:'text',em:'💬',name:'Тексты и работа',desc:'Ответы, посты, письма, анализ, документы.',tools:[
+   {n:'ChatGPT',s:'универсал: тексты, файлы, картинки, голос',lvl:2},
+   {n:'Claude',s:'длинные тексты, живой стиль, проекты и инструкции',lvl:2},
+   {n:'Gemini',s:'экосистема Google, большой контекст',lvl:2},
+   {n:'DeepSeek',s:'сильный и бесплатный, логика и код',lvl:1,ru:1,free:1},
+   {n:'GigaChat',s:'по-русски, без VPN — первые шаги',lvl:1,ru:1,free:1},
+   {n:'Алиса / YandexGPT',s:'по-русски, бытовые задачи',lvl:1,ru:1,free:1},
+   {n:'Perplexity',s:'поиск с ссылками на источники',lvl:1,ru:1,free:1},
+ ]},
+ {id:'img',em:'🎨',name:'Картинки и визуал',desc:'Иллюстрации, обложки, визуал для постов.',tools:[
+   {n:'Midjourney',s:'самые красивые изображения, свой стиль',lvl:2},
+   {n:'DALL·E (в ChatGPT)',s:'картинка прямо в чате по описанию',lvl:2},
+   {n:'Ideogram',s:'силён в тексте на картинке',lvl:2},
+   {n:'Kandinsky',s:'по-русски, без VPN',lvl:1,ru:1,free:1},
+   {n:'Шедеврум',s:'по-русски, бесплатно, быстро',lvl:1,ru:1,free:1},
+ ]},
+ {id:'video',em:'🎬',name:'Видео',desc:'Ролики, анимация, рилсы из текста и фото.',tools:[
+   {n:'Runway',s:'видео из текста и фото, редактирование',lvl:3},
+   {n:'Kling',s:'реалистичное видео, доступен из РФ',lvl:3,ru:1},
+   {n:'Sora',s:'видео из текста (OpenAI)',lvl:3},
+   {n:'Luma / Pika',s:'быстрые короткие клипы и анимация',lvl:3},
+ ]},
+ {id:'avatar',em:'👤',name:'Аватары, нейрофото и голос',desc:'Говорящий цифровой двойник, фотосессия, озвучка.',tools:[
+   {n:'HeyGen',s:'видео-аватар: твой двойник говорит текст',lvl:3},
+   {n:'D-ID',s:'оживить фото — говорящая голова',lvl:3},
+   {n:'Synthesia',s:'аватары-ведущие для обучающих видео',lvl:3},
+   {n:'Нейрофотосессия',s:'фото «как из студии»: Midjourney + спец-сервисы',lvl:2},
+   {n:'ElevenLabs',s:'озвучка и клон голоса',lvl:3},
+ ]},
+ {id:'site',em:'🛠️',name:'Сайты и приложения',desc:'Лендинги, квизы, мини-приложения без кода.',tools:[
+   {n:'Claude (Artifacts)',s:'страница/приложение прямо в чате',lvl:3},
+   {n:'Lovable · v0 · Bolt',s:'сайт по описанию (вайбкодинг)',lvl:3},
+   {n:'ChatGPT',s:'код и разметка под конструкторы (Tilda и др.)',lvl:3},
+ ]},
+ {id:'files',em:'📊',name:'Файлы и таблицы',desc:'Загрузить документ, свести, заполнить, найти ошибки.',tools:[
+   {n:'ChatGPT',s:'загрузка файлов, разбор, работа с таблицами',lvl:2},
+   {n:'Claude',s:'проекты, длинные документы, сводки',lvl:2},
+   {n:'Gemini',s:'большой контекст, Google-таблицы',lvl:2},
+ ]},
+ {id:'system',em:'⚙️',name:'Система и агенты',desc:'ИИ работает в твоих файлах и папках на потоке.',tools:[
+   {n:'Claude Code',s:'реальная работа с файлами и процессами',lvl:4},
+   {n:'ИИ-агенты',s:'выполняют задачи в фоне, автоматизация',lvl:4},
+ ]},
+];
+const chips=document.getElementById('chips'), panel=document.getElementById('panel'), ruonly=document.getElementById('ruonly');
+let active=DATA[0].id;
+
+function badges(t){let b=`<span class="b lvl">Уровень ${t.lvl}</span>`;if(t.ru)b+=`<span class="b ru">без VPN</span>`;if(t.free)b+=`<span class="b free">бесплатно</span>`;return b;}
+function renderChips(){
+  chips.innerHTML=DATA.map(c=>`<button class="chip${c.id===active?' on':''}" data-id="${c.id}"><span class="em">${c.em}</span>${c.name}</button>`).join('');
+  chips.querySelectorAll('.chip').forEach(b=>b.onclick=()=>{active=b.dataset.id;renderChips();renderPanel();});
+}
+function renderPanel(){
+  const c=DATA.find(x=>x.id===active);
+  let tools=c.tools; if(ruonly.checked)tools=tools.filter(t=>t.ru);
+  const cards=tools.length?tools.map(t=>`<div class="tool"><div class="nm">${t.n}</div><div class="s">${t.s}</div><div class="badges">${badges(t)}</div></div>`).join('')
+    :`<div class="empty">В этой задаче русских инструментов без VPN пока нет — сними галочку «Только без VPN».</div>`;
+  panel.innerHTML=`<div class="ph"><span class="big">${c.em}</span><h2>${c.name}</h2></div><div class="desc">${c.desc}</div><div class="tools">${cards}</div>`;
+}
+ruonly.onchange=renderPanel;
+renderChips();renderPanel();
+</script>
 </body>
 </html>
