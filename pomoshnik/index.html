@@ -31,7 +31,8 @@
   .lv .n{flex:0 0 auto;width:30px;height:30px;border-radius:9px;background:var(--grad);color:#fff;font-family:'Unbounded',sans-serif;font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center}
   .lv .tx b{font-weight:700}.lv .tx{font-size:15px;color:#33283b}
   .lv.crs .n{background:var(--magenta)}
-  .lv.crs .pill{display:inline-block;font-size:11px;font-weight:700;color:#fff;background:var(--magenta);border-radius:999px;padding:2px 9px;margin-left:6px;vertical-align:middle}
+  .crsnote{margin-top:14px;background:linear-gradient(100deg,#FFF1F8,#F2EAFE);border:1px solid #F1D9EC;border-radius:14px;padding:12px 15px;font-size:14px;color:#4a3d48}
+  .crsnote b{color:var(--magenta)}
   .foot{text-align:center;color:#9a8d98;font-size:13px;margin-top:30px}
 </style>
 </head>
@@ -56,7 +57,8 @@
     <div class="lv"><div class="n">1</div><div class="tx"><b>Сейчас, в чате</b> — что уже сегодня можно снять с себя, без техники</div></div>
     <div class="lv"><div class="n">2</div><div class="tx"><b>Твой стиль</b> — научить ИИ делать по-твоему: свои подходы и тон</div></div>
     <div class="lv"><div class="n">3</div><div class="tx"><b>Автоматизация</b> — собрать повторяющееся в помощников и связки</div></div>
-    <div class="lv crs"><div class="n">4</div><div class="tx"><b>Своя система</b> — всё на потоке, ИИ в твоих файлах <span class="pill">на курсе</span></div></div>
+    <div class="lv crs"><div class="n">4</div><div class="tx"><b>Своя система</b> — всё на потоке, ИИ в твоих файлах</div></div>
+    <div class="crsnote">● Эти <b>4 уровня — и есть путь курса</b>. Помощник покажет, где ты сейчас и с чего начать; а пройти их все по шагам под свои задачи — на практикуме и курсе.</div>
   </div>
 
   <div class="foot">Мини-помощник практикума «Как делать своё дело легко и в удовольствие»</div>
@@ -76,7 +78,7 @@ const PROMPT = `Ты — дружелюбный помощник. Помогае
 Уровень 3 — Автоматизация. Что из повторяющегося вынести в готовых помощников и связки, чтобы не начинать с нуля.
 Уровень 4 — Своя система. Как собрать всё в рабочую систему, где ИИ работает в его файлах и задачах.
 
-ШАГ 3. Заверши тёпло: уровни 1–2 можно начать самому уже сегодня, а свою систему (3–4) удобнее собирать по шагам — этому и учим на практикуме «Как делать своё дело легко и в удовольствие».
+ШАГ 3. Заверши тёпло: начать можно уже сегодня, а пройти все четыре уровня по шагам и собрать свою систему — на практикуме и курсе «Как делать своё дело легко и в удовольствие».
 
 Правила: не перегружай; тире «–»; без курсива; честно — не «автоматизируем всё сразу».`;
 
