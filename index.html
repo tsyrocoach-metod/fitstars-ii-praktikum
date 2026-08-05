@@ -246,6 +246,10 @@ a{color:inherit}
 .sp-name{font-family:'Unbounded',sans-serif;font-weight:700;font-size:28px}
 .sp-role{font-weight:600;font-size:15px;color:#E0BEF0;margin:8px 0 14px;max-width:620px}
 .sp-body p{color:#D8D0E2;max-width:660px}
+.sp-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:22px;max-width:660px}
+.sp-stat{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:16px;padding:16px 14px}
+.sp-stat b{display:block;font-family:'Unbounded',sans-serif;font-weight:700;font-size:26px;line-height:1;color:#FF8FC0}
+.sp-stat span{display:block;margin-top:8px;font-size:13px;line-height:1.35;color:#C9BFD6;font-weight:500}
 .sp-accent{margin-top:20px;display:inline-block;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);
   border-radius:14px;padding:14px 20px;font-weight:700}
 .sp-accent b{color:#FF8FC0}
@@ -364,6 +368,8 @@ footer{background:var(--dark);color:#CFC7D7;padding:56px 0 34px}
   .ct-right{padding-left:0;padding-top:24px;border-left:none;border-top:1px solid rgba(255,255,255,.12)}
   .cta-timer .unit{min-width:0;flex:1}
   .speaker{grid-template-columns:1fr;text-align:center;justify-items:center}
+  .sp-stats{grid-template-columns:1fr 1fr;gap:10px}
+  .sp-stat b{font-size:23px}
   .count{flex-direction:column;align-items:flex-start}
   .clock{width:100%;justify-content:space-between}
   .unit{min-width:0;flex:1}
@@ -486,7 +492,13 @@ footer{background:var(--dark);color:#CFC7D7;padding:56px 0 34px}
       <span class="label">Кто ведёт</span>
       <div class="sp-name">Светлана Цыро</div>
       <div class="sp-role">Методолог в проектах FitStars («Блогер с нуля», «Менеджер по работе с блогерами»), Седы Каспаровой и других экспертов и онлайн-школ</div>
-      <p>Такой же гуманитарий, как ты, – не технарь. За 1,5 года реализовала несколько продуктов с помощью ИИ и автоматизирую работу, чтобы чаще проводить время с семьёй и оставлять время на хобби.</p>
+      <p>Такой же гуманитарий, как ты, – не технарь. За 1,5 года выстроила систему, где ИИ собирает конспекты, пошаговые руководства и материалы курсов. Запустила в партнёрстве продукт «ИИ-методолог», создала две платформы для экспертов и их онлайн-продуктов и интерактивную книгу. Рутина, которая раньше съедала время и силы, теперь идёт в 4–5 раз быстрее – а освободившееся время я трачу на семью и хобби.</p>
+      <div class="sp-stats">
+        <div class="sp-stat"><b>10+</b><span>курсов собрано с ИИ</span></div>
+        <div class="sp-stat"><b>×4–5</b><span>быстрее работа с материалами</span></div>
+        <div class="sp-stat"><b>2</b><span>платформы для экспертов</span></div>
+        <div class="sp-stat"><b>1,5 года</b><span>в работе с ИИ</span></div>
+      </div>
       <div class="sp-accent">ИИ – не новая профессия, а инструмент, который <b>поднимает чек там, где ты уже специалист</b></div>
     </div>
   </div>
