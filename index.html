@@ -320,6 +320,16 @@ footer{background:var(--dark);color:#CFC7D7;padding:56px 0 34px}
   justify-content:space-between;gap:16px;flex-wrap:wrap}
 .foot-legal p{font-size:var(--fine);opacity:.6}
 
+/* ---------- cookie-плашка ---------- */
+.cookie{position:fixed;left:16px;right:16px;bottom:16px;z-index:90;display:none;
+  align-items:center;gap:18px;padding:16px 20px;border-radius:18px;
+  background:rgba(255,255,255,.94);backdrop-filter:blur(10px);border:1px solid var(--line);
+  box-shadow:0 20px 50px -22px rgba(120,20,90,.35);max-width:960px;margin:0 auto}
+.cookie.show{display:flex}
+.cookie p{font-size:14px;line-height:1.5;color:var(--ink);flex:1}
+.cookie a{color:var(--pink);font-weight:700;text-decoration:underline}
+.cookie .btn{flex-shrink:0;min-height:44px;font-size:15px;padding:0 26px}
+
 /* ---------- modal ---------- */
 .modal{position:fixed;inset:0;z-index:100;display:flex;align-items:flex-start;justify-content:center;
   padding:36px 16px;overflow-y:auto;background:rgba(27,20,32,.55);backdrop-filter:blur(6px);
@@ -361,6 +371,8 @@ footer{background:var(--dark);color:#CFC7D7;padding:56px 0 34px}
   .meta-note{padding:44px 20px}
   .mn-card{flex-direction:column;text-align:center;gap:16px;padding:26px 22px}
   .mn-btn{width:100%}
+  .cookie{flex-direction:column;align-items:stretch;gap:12px;padding:16px;left:12px;right:12px;bottom:12px}
+  .cookie .btn{width:100%}
 }
 </style>
 
@@ -597,6 +609,13 @@ footer{background:var(--dark);color:#CFC7D7;padding:56px 0 34px}
   </div>
 </footer>
 
+<!-- ===== cookie-плашка ===== -->
+<!-- ССЫЛКА-ЗАГЛУШКА: заменить href="#cookie-policy" на реальный адрес Политики использования cookies -->
+<div class="cookie" id="cookieBar" role="region" aria-label="Использование cookies">
+  <p>Мы используем файлы cookies, в том числе для аналитики с помощью Яндекс Метрики. Продолжая использовать сайт, вы соглашаетесь с их использованием. Подробнее в <a href="#cookie-policy" target="_blank" rel="noopener">Политике использования cookies</a>.</p>
+  <button type="button" class="btn" id="cookieOk">Принять</button>
+</div>
+
 <!-- ===== модалки с виджетами GetCourse ===== -->
 <div class="modal" id="modal-free" role="dialog" aria-modal="true" aria-label="Регистрация — бесплатный тариф">
   <div class="modal-dialog">
@@ -643,6 +662,19 @@ footer{background:var(--dark);color:#CFC7D7;padding:56px 0 34px}
   document.querySelectorAll('[data-modal]').forEach(function(b){b.addEventListener('click',function(){open(b.getAttribute('data-modal'))})});
   document.querySelectorAll('.modal').forEach(function(m){m.addEventListener('click',function(e){if(e.target===m||e.target.hasAttribute('data-close'))closeAll()})});
   document.addEventListener('keydown',function(e){if(e.key==='Escape')closeAll()});
+})();
+
+// cookie-плашка: показываем один раз, выбор запоминаем
+(function(){
+  var KEY='fsai_cookie_ok', bar=document.getElementById('cookieBar'), btn=document.getElementById('cookieOk');
+  if(!bar||!btn) return;
+  var accepted=false;
+  try{ accepted = localStorage.getItem(KEY)==='1' }catch(e){}
+  if(!accepted) setTimeout(function(){ bar.classList.add('show') }, 900);
+  btn.addEventListener('click', function(){
+    try{ localStorage.setItem(KEY,'1') }catch(e){}
+    bar.classList.remove('show');
+  });
 })();
 
 // цели Яндекс.Метрики
