@@ -165,6 +165,18 @@ a{color:inherit}
 .col h3{font-size:var(--sub);font-weight:700;margin-bottom:18px}
 .col.good h3{color:var(--pink-strong)}
 
+
+/* промежуточный призыв */
+.ctaband{margin-top:44px;background:var(--dark);color:#fff;border-radius:var(--radius-lg);padding:36px 40px;
+  display:flex;align-items:center;justify-content:space-between;gap:28px;flex-wrap:wrap;position:relative;overflow:hidden}
+.ctaband::after{content:"";position:absolute;right:-90px;top:-90px;width:300px;height:300px;border-radius:50%;
+  background:radial-gradient(circle,rgba(230,25,140,.5),transparent 70%)}
+.ctaband h3{font-family:'Unbounded',sans-serif;font-weight:700;font-size:26px;margin-bottom:8px;position:relative;z-index:1}
+.ctaband p{color:#CFC6D6;max-width:460px;position:relative;z-index:1}
+.ctaband .side{position:relative;z-index:1;display:flex;flex-direction:column;gap:10px;align-items:flex-start}
+.ctaband .fine{color:#B4AAC0;opacity:1}
+@media(max-width:900px){.ctaband{padding:28px 24px}.ctaband .btn{width:100%}}
+
 /* автор */
 .author{display:grid;grid-template-columns:auto 1fr;gap:36px;align-items:center}
 .author-photo{width:210px;height:252px;border-radius:22px;object-fit:cover;object-position:center 20%;
@@ -336,39 +348,9 @@ footer{background:var(--dark);color:#CFC7D7;padding:56px 0 34px}
   </div>
 </section>
 
-<!-- ===== 2 БОЛЬ ===== -->
-<section class="sec band-tint">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="label">Знакомо?</span>
-      <h2>Пробуешь ИИ время от времени –<br>но <span class="accent">в систему не складывается</span></h2>
-    </div>
-    <div class="cards">
-      <div class="card reveal"><h3>«Всё приходится перепроверять»</h3><p>Не доверяешь результату – и делаешь работу дважды.</p></div>
-      <div class="card reveal"><h3>«Получается разрозненно»</h3><p>Пробуешь разные нейросети, но системы нет – каждый раз с нуля.</p></div>
-      <div class="card reveal"><h3>«Текст пластиковый, не мой голос»</h3><p>Много времени на рутину, а результат всё равно приходится переписывать.</p></div>
-      <div class="card reveal"><h3>«Боюсь даже начать»</h3><p>Вдруг не потяну – технически или по деньгам.</p></div>
-      <div class="card reveal"><h3>«ИИ – это просто болталка»</h3><p>Копирую из чата и всё равно переделываю сама.</p></div>
-      <div class="card reveal"><h3>«Не знаю, что он вообще может»</h3><p>Используешь процент возможностей и не понимаешь, что упускаешь.</p></div>
-    </div>
-  </div>
-</section>
 
-<!-- ===== 3 ЦЕНА БЕЗДЕЙСТВИЯ ===== -->
-<section class="sec">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="label">Что происходит, если ничего не менять</span>
-      <h2>Разрыв между «пробую иногда» и рабочей системой <span class="accent">растёт каждый месяц</span></h2>
-    </div>
-    <ul class="list reveal" style="max-width:860px">
-      <li><span class="mk">→</span><span>Продолжаешь тратить <b>часы на рутину</b>, которую уже можно делегировать</span></li>
-      <li><span class="mk">→</span><span>Остаёшься заложником <b>разового запроса в чате</b> – каждый раз начинаешь заново</span></li>
-      <li><span class="mk">→</span><span>ИИ развивается каждый месяц – <b>разрыв только растёт</b></span></li>
-      <li><span class="mk">→</span><span>Стесняешься результата и переделываешь вручную – <b>платишь временем дважды</b></span></li>
-    </ul>
-  </div>
-</section>
+
+
 
 <!-- ===== 4 БОЛЬШОЕ ОБЕЩАНИЕ ===== -->
 <section class="sec band-dark">
@@ -485,6 +467,18 @@ footer{background:var(--dark);color:#CFC7D7;padding:56px 0 34px}
       </div>
     </div>
   </div>
+  <div class="wrap">
+    <div class="ctaband reveal">
+      <div>
+        <h3>Готовы начать?</h3>
+        <p>Первый поток камерный: 50 мест на «Нейро-Системе» и всего 3 – на «Нейро-Масштабе».</p>
+      </div>
+      <div class="side">
+        <a href="#tariffs" class="btn">Выбрать тариф <span class="arw">→</span></a>
+        <span class="fine">Старт 28 сентября · тарифы от 4 900 ₽</span>
+      </div>
+    </div>
+  </div>
 </section>
 
 <!-- ===== 8 АВТОР ===== -->
@@ -502,26 +496,7 @@ footer{background:var(--dark);color:#CFC7D7;padding:56px 0 34px}
   </div>
 </section>
 
-<!-- ===== 9 СОЦДОК ===== -->
-<section class="sec band-tint">
-  <div class="wrap">
-    <div class="sec-head reveal" style="text-align:center;margin-left:auto;margin-right:auto">
-      <span class="label">Реальные запросы</span>
-      <h2>Что писали в опросе <span class="accent">будущие участники</span></h2>
-      <p>25 анкет. Курс собран под эти запросы – и под цену, которую можно потянуть.</p>
-    </div>
-    <div class="quotes reveal">
-      <div class="quote"><div class="who">Бухгалтер в найме</div><p>«Хочу что-нибудь в Excel, анализ данных… и создание помощников для работы»</p></div>
-      <div class="quote"><div class="who">Блогер</div><p>«Много времени трачу на рутину… нужна хорошая система для блогеров»</p></div>
-      <div class="quote"><div class="who">На пенсии</div><p>«Очень хочу пройти курс по нейросетям, но боюсь – вдруг не потяну оплату»</p></div>
-    </div>
-    <div class="partners reveal">
-      <span class="tag-pill">FitStars</span>
-      <span class="tag-pill">Блогер с нуля</span>
-      <span class="tag-pill">Менеджер по работе с блогерами</span>
-    </div>
-  </div>
-</section>
+
 
 <!-- ===== 10 ТАРИФЫ ===== -->
 <section class="sec">
