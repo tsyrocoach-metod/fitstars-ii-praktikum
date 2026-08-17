@@ -247,9 +247,21 @@ a{color:inherit}
 .t-feats{list-style:none;display:flex;flex-direction:column;gap:11px;margin-bottom:24px;flex:1}
 .t-feats li{display:flex;gap:11px;font-size:15.5px}
 .t-feats li::before{content:"✓";color:var(--pink);font-weight:800;flex-shrink:0}
-.t-feats li.no{opacity:.45}
-.t-feats li.no::before{content:"–";color:var(--ink)}
+.t-feats li.no{opacity:.55}
+.t-feats li.no::before{content:"✕";color:#B9AFC2;font-weight:800}
+.t-feats li.no span{text-decoration:line-through;text-decoration-thickness:1px}
 .tbtn{width:100%;margin-top:auto}
+
+
+/* дедлайн цены */
+.deadline{display:flex;align-items:center;gap:18px;flex-wrap:wrap;justify-content:center;text-align:center;
+  margin:0 auto 30px;max-width:820px;padding:20px 26px;border-radius:18px;
+  background:linear-gradient(160deg,#FFF0F8,#F4EAFE);border:1px solid #F3D3E8}
+.deadline .dl-ic{width:46px;height:46px;border-radius:14px;background:#fff;border:1px solid #F6CFE2;
+  display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0}
+.deadline .dl-txt{flex:1;min-width:240px;text-align:left;font-size:15.5px;line-height:1.45}
+.deadline b{color:var(--pink-strong)}
+@media(max-width:900px){.deadline .dl-txt{text-align:center}}
 
 /* гарантия */
 .guarantee{margin-top:28px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
@@ -380,7 +392,7 @@ footer{background:var(--dark);color:#CFC7D7;padding:56px 0 34px}
         <span class="date-pill"><span class="dot"></span>Старт <b>28 сентября</b></span>
         <a href="#tariffs" class="btn">Забронировать место <span class="arw">→</span></a>
       </div>
-      <p class="fine" style="margin-top:14px">Тарифы от 4 900 ₽ · первый поток камерный, количество мест ограничено</p>
+      <p class="fine" style="margin-top:14px">Тарифы от 4 900 ₽ · цена до 22 августа · первый поток камерный, количество мест ограничено</p>
     </div>
     </div>
 </section>
@@ -582,7 +594,7 @@ footer{background:var(--dark);color:#CFC7D7;padding:56px 0 34px}
       </div>
       <div class="side">
         <a href="#tariffs" class="btn">Выбрать тариф <span class="arw">→</span></a>
-        <span class="fine">Старт 28 сентября · тарифы от 4 900 ₽</span>
+        <span class="fine">Старт 28 сентября · цена до 22 августа, 23:59</span>
       </div>
     </div>
   </div>
@@ -614,20 +626,30 @@ footer{background:var(--dark);color:#CFC7D7;padding:56px 0 34px}
       <h2>Выбери <span class="accent">свой формат</span></h2>
       <p>Первый поток – камерный. Количество мест ограничено, а цена поднимается три раза.</p>
     </div>
+    <div class="deadline reveal">
+      <div class="dl-ic">⏳</div>
+      <div class="dl-txt">Эта цена действует <b>до 22 августа, 23:59</b> – дальше повышение. А при оплате <b>в течение 24 часов</b> открываются бонусы ценностью <b>10 000 ₽</b>.</div>
+    </div>
     <div class="tariffs">
       <div class="tcard reveal">
+
         <div class="t-name">Нейро-Старт</div>
-        <div class="t-posyl">Быстрый вход в тему и база для тех, кто хочет попробовать</div>
+        <div class="t-posyl">Быстрый вход в тему ИИ и база для тех, кто хочет попробовать</div>
         <div class="t-price">4 900 ₽</div>
         <div class="t-old">вместо 12 750 ₽</div>
         <div class="t-seats">Без ограничения по местам</div>
         <ul class="t-feats">
           <li>3 модуля курса</li>
           <li>Доступ 1 месяц</li>
-          <li>Бонусы модулей 1–2</li>
-          <li class="no">Живые воркшопы</li>
-          <li class="no">Чат с куратором</li>
-          <li class="no">Личные встречи</li>
+          <li>Набор «Быстрый старт»</li>
+          <li>Набор «Учимся быстрее»</li>
+          <li>Набор «ИИ для жизни и семьи»</li>
+          <li class="no"><span>Модуль 4 «Своя система работы»</span></li>
+          <li class="no"><span>Набор «Контент и продукты»</span></li>
+          <li class="no"><span>Два живых практикума</span></li>
+          <li class="no"><span>Чат с куратором</span></li>
+          <li class="no"><span>Две личные встречи с экспертом</span></li>
+          <li class="no"><span>Курс «Блогер с нуля» в подарок</span></li>
         </ul>
         <button type="button" class="btn btn-ghost tbtn" data-modal="m-start">Выбрать «Нейро-Старт»</button>
       </div>
@@ -642,15 +664,20 @@ footer{background:var(--dark);color:#CFC7D7;padding:56px 0 34px}
         <ul class="t-feats">
           <li>Все 4 модуля курса</li>
           <li>Доступ 3 месяца</li>
-          <li><b>2 живых практикума</b></li>
+          <li>Набор «Быстрый старт»</li>
+          <li>Набор «Учимся быстрее»</li>
+          <li>Набор «ИИ для жизни и семьи»</li>
+          <li>Набор «Контент и продукты»</li>
+          <li><b>Два живых практикума</b> – недели 1 и 3</li>
           <li><b>Чат с куратором</b></li>
-          <li>ИИ-тьютор в подарок</li>
-          <li class="no">Личные встречи</li>
+          <li class="no"><span>Две личные встречи с экспертом</span></li>
+          <li class="no"><span>Курс «Блогер с нуля» в подарок</span></li>
         </ul>
         <button type="button" class="btn tbtn" data-modal="m-sistema">Выбрать «Нейро-Система»</button>
       </div>
 
       <div class="tcard reveal">
+
         <div class="t-name">Нейро-Масштаб</div>
         <div class="t-posyl">Максимальное ускорение и выход на новый уровень дохода вместе с экспертом</div>
         <div class="t-price">47 900 ₽</div>
@@ -659,12 +686,13 @@ footer{background:var(--dark);color:#CFC7D7;padding:56px 0 34px}
         <ul class="t-feats">
           <li>Все 4 модуля курса</li>
           <li>Доступ 6 месяцев</li>
-          <li>2 живых практикума</li>
-          <li><b>2 личные встречи с экспертом</b></li>
+          <li>Все четыре набора-бонуса</li>
+          <li>Два живых практикума – недели 1 и 3</li>
           <li><b>Индивидуальный чат</b></li>
+          <li><b>Две личные встречи с экспертом</b></li>
           <li><b>Курс «Блогер с нуля» в подарок</b></li>
         </ul>
-        <button type="button" class="btn tbtn" data-modal="m-masshtab">Выбрать «Нейро-Масштаб»</button>
+        <button type="button" class="btn btn-ghost tbtn" data-modal="m-masshtab">Выбрать «Нейро-Масштаб»</button>
       </div>
     </div>
 
@@ -704,7 +732,7 @@ footer{background:var(--dark);color:#CFC7D7;padding:56px 0 34px}
     <div class="final reveal">
       <span class="date-pill"><span class="dot"></span>Старт <b>28 сентября</b></span>
       <h2>Через 4 недели ИИ перестанет быть болталкой – и станет <span class="accent">рабочим инструментом</span>, которому доверяешь</h2>
-      <p>Первый поток камерный: количество мест ограничено – 50 на тарифе «Нейро-Система» и всего 3 на «Нейро-Масштаб».</p>
+      <p>Первый поток камерный: количество мест ограничено – 50 на тарифе «Нейро-Система» и всего 3 на «Нейро-Масштаб». Текущая цена – до 22 августа, 23:59.</p>
       <a href="#tariffs" class="btn">Выбрать тариф и забронировать место <span class="arw">→</span></a>
     </div>
   </div>
@@ -815,7 +843,11 @@ footer{background:var(--dark);color:#CFC7D7;padding:56px 0 34px}
   function apply(t){
     wrap.setAttribute('data-tariff',t);
     var start = (t==='start');
-    wrap.querySelectorAll('.kit, .wshop').forEach(function(el){ el.classList.toggle('locked', start) });
+    wrap.querySelectorAll('.wshop').forEach(function(el){ el.classList.toggle('locked', start) });
+    wrap.querySelectorAll('.kit').forEach(function(el){
+      var inM4 = !!el.closest('[data-body="4"]');
+      el.classList.toggle('locked', start && inM4);
+    });
     var tab4=wrap.querySelector('.lv-tab[data-lv="4"]');
     if(tab4) tab4.classList.toggle('locked', start);
     if(typeof ym==='function'){try{ym(111314883,'reachGoal','tariff_filter')}catch(e){}}
