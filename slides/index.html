@@ -99,6 +99,13 @@ ul.tight li{font-size:3.2cqw}
 .col.good li::before{content:"✓";color:var(--pink);opacity:1;font-weight:800}
 .s-dark .col.good li::before{color:var(--pink-2)}
 
+
+/* тарифные карточки */
+.tariffs .tile{display:flex;flex-direction:column;padding:2.6cqw 2.4cqw}
+.t-price{font-family:'Unbounded',sans-serif;font-weight:800;font-size:4.2cqw;line-height:1;margin:.8cqw 0 .4cqw}
+.t-old{font-size:2.2cqw;opacity:.65;text-decoration:line-through;margin-bottom:1.4cqw}
+.tariffs .t-p{font-size:2.6cqw;line-height:1.4}
+
 /* большая цифра */
 .stat{font-family:'Unbounded',sans-serif;font-weight:800;font-size:12cqw;line-height:1;color:var(--pink)}
 .s-dark .stat,.s-grad .stat{color:#fff}
@@ -524,18 +531,24 @@ ul.tight li{font-size:3.2cqw}
   <span class="tag">Курс Нейро-архитектор</span>
   <span class="label">Цена и условия</span>
   <h2>Три тарифа</h2>
-  <div class="tiles t3" style="margin-top:2.6cqw">
+  <div class="tiles t3 tariffs" style="margin-top:2.4cqw">
     <div class="tile">
       <div class="t-h">Самостоятельный</div>
-      <div class="t-p"><b style="font-size:3.8cqw">4 900 ₽</b> <s style="opacity:.5">12 750 ₽</s><br><br>3 модуля<br>Доступ 1 месяц</div>
+      <div class="t-price">4 900 ₽</div>
+      <div class="t-old">вместо 12 750 ₽</div>
+      <div class="t-p">3 модуля<br>Доступ 1 месяц</div>
     </div>
     <div class="tile">
       <div class="t-h">С поддержкой</div>
-      <div class="t-p"><b style="font-size:3.8cqw">12 900 ₽</b> <s style="opacity:.5">27 000 ₽</s><br><br>4 модуля<br>2 воркшопа<br>Чат с куратором<br>Доступ 3 месяца</div>
+      <div class="t-price">12 900 ₽</div>
+      <div class="t-old">вместо 27 000 ₽</div>
+      <div class="t-p">4 модуля · 2 воркшопа<br>Чат с куратором<br>Доступ 3 месяца</div>
     </div>
     <div class="tile">
       <div class="t-h">Индивидуальный</div>
-      <div class="t-p"><b style="font-size:3.8cqw">44 900 ₽</b> <s style="opacity:.5">71 300 ₽</s><br><br>4 модуля · 2 воркшопа<br>2 личные встречи<br>Индивидуальный чат<br>Доступ 6 месяцев<br><b>+ курс «Блогер с нуля» в подарок</b></div>
+      <div class="t-price">44 900 ₽</div>
+      <div class="t-old">вместо 71 300 ₽</div>
+      <div class="t-p">4 модуля · 2 воркшопа<br>2 личные встречи<br>Доступ 6 месяцев<br><b>+ «Блогер с нуля» в подарок</b></div>
     </div>
   </div>
   <div class="note">Старт – <b>28 сентября</b>. Первый результат уже в день 1. «Блогер с нуля» в подарок – фундамент, на который сразу надстраиваем ИИ. <b>Безопасный вход.</b></div>
