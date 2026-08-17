@@ -135,6 +135,27 @@ ul.tight li{font-size:3.2cqw}
 .mark{position:absolute;left:8cqw;bottom:5.5cqw;height:3cqw;width:auto;opacity:.5}
 .s-dark .mark,.s-grad .mark{filter:brightness(0) invert(1);opacity:.65}
 
+
+/* кнопка тарифа */
+.t-btn{margin-top:auto;display:block;width:100%;border:none;cursor:pointer;font-family:inherit;
+  font-weight:800;font-size:2.6cqw;padding:1.6cqw 1.2cqw;border-radius:1.4cqw;
+  background:#fff;color:#B0116A;transition:transform .15s ease, box-shadow .15s ease}
+.t-btn:hover{transform:translateY(-2px);box-shadow:0 1.4cqw 3cqw -1cqw rgba(0,0,0,.45)}
+.t-posyl{font-size:2.3cqw;line-height:1.35;opacity:.85;margin:1.2cqw 0 1.6cqw;font-style:normal}
+
+/* модалка с виджетом GetCourse */
+.modal{position:fixed;inset:0;z-index:200;display:flex;align-items:flex-start;justify-content:center;
+  padding:4vmin 3vmin;overflow-y:auto;background:rgba(20,12,26,.72);backdrop-filter:blur(6px);
+  opacity:0;visibility:hidden;transition:opacity .22s ease, visibility .22s ease}
+.modal.open{opacity:1;visibility:visible}
+.modal-dialog{position:relative;width:100%;max-width:min(520px,92vw);background:#fff;border-radius:24px;
+  padding:12px 12px 8px;margin:auto;box-shadow:0 40px 90px -30px rgba(0,0,0,.7)}
+.modal-close{position:absolute;top:12px;right:12px;z-index:3;width:38px;height:38px;border-radius:50%;
+  border:none;background:#F3EEF6;color:#211829;font-size:22px;line-height:1;cursor:pointer}
+.modal-close:hover{background:#E9E1EE}
+.modal-body{border-radius:16px;overflow:hidden}
+.modal-body iframe{width:100%!important;border:none;display:block}
+
 /* управление */
 .ctl{position:fixed;bottom:2vmin;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:1.2vmin;
   background:rgba(255,255,255,.08);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.16);
@@ -533,25 +554,31 @@ ul.tight li{font-size:3.2cqw}
   <h2>Три тарифа</h2>
   <div class="tiles t3 tariffs" style="margin-top:2.4cqw">
     <div class="tile">
-      <div class="t-h">Самостоятельный</div>
+      <div class="t-h">Нейро-Старт</div>
       <div class="t-price">4 900 ₽</div>
       <div class="t-old">вместо 12 750 ₽</div>
-      <div class="t-p">3 модуля<br>Доступ 1 месяц</div>
+      <div class="t-posyl">Быстрый вход в тему и база для тех, кто хочет попробовать</div>
+      <div class="t-p">3 модуля · доступ 1 месяц<br><b>Мест без ограничений</b></div>
+      <button type="button" class="t-btn" data-modal="m-start">Выбрать →</button>
     </div>
     <div class="tile">
-      <div class="t-h">С поддержкой</div>
+      <div class="t-h">Нейро-Система</div>
       <div class="t-price">12 900 ₽</div>
       <div class="t-old">вместо 27 000 ₽</div>
-      <div class="t-p">4 модуля · 2 воркшопа<br>Чат с куратором<br>Доступ 3 месяца</div>
+      <div class="t-posyl">Полная сборка твоего рабочего процесса под присмотром куратора</div>
+      <div class="t-p">4 модуля · 2 воркшопа · чат с куратором · доступ 3 месяца<br><b>Только 50 мест</b></div>
+      <button type="button" class="t-btn" data-modal="m-sistema">Выбрать →</button>
     </div>
     <div class="tile">
-      <div class="t-h">Индивидуальный</div>
-      <div class="t-price">44 900 ₽</div>
+      <div class="t-h">Нейро-Масштаб</div>
+      <div class="t-price">47 900 ₽</div>
       <div class="t-old">вместо 71 300 ₽</div>
-      <div class="t-p">4 модуля · 2 воркшопа<br>2 личные встречи<br>Доступ 6 месяцев<br><b>+ «Блогер с нуля» в подарок</b></div>
+      <div class="t-posyl">Максимальное ускорение и выход на новый уровень дохода вместе с экспертом</div>
+      <div class="t-p">2 личные встречи · доступ 6 месяцев<br><b>+ «Блогер с нуля» в подарок</b><br><b>Только 3 места</b></div>
+      <button type="button" class="t-btn" data-modal="m-masshtab">Выбрать →</button>
     </div>
   </div>
-  <div class="note">Старт – <b>28 сентября</b>. Первый результат уже в день 1. «Блогер с нуля» в подарок – фундамент, на который сразу надстраиваем ИИ. <b>Безопасный вход.</b></div>
+  <div class="note">Старт – <b>28 сентября</b>. Это <b>первый поток – он камерный</b>, поэтому мест ограниченное количество.<br>При оплате <b>в течение 24 часов</b> – бонусы ценностью <b>10 000 ₽</b>.</div>
   <span class="num"></span>
 </section>
 
@@ -813,6 +840,29 @@ ul.tight li{font-size:3.2cqw}
 
 </div>
 
+<!-- ===== модалки с виджетами GetCourse (курс) ===== -->
+<div class="modal" id="m-start" role="dialog" aria-modal="true" aria-label="Тариф Нейро-Старт">
+  <div class="modal-dialog"><button class="modal-close" data-close aria-label="Закрыть">&times;</button>
+    <div class="modal-body">
+      <script id="beb1660c46058426c9184802b74580baa83f5c8a" src="https://influencerexpert.ru/pl/lite/widget/script?id=1643752"></script>
+    </div>
+  </div>
+</div>
+<div class="modal" id="m-sistema" role="dialog" aria-modal="true" aria-label="Тариф Нейро-Система">
+  <div class="modal-dialog"><button class="modal-close" data-close aria-label="Закрыть">&times;</button>
+    <div class="modal-body">
+      <script id="2c2bc347a913b1fa3f57500392f22515cba41567" src="https://influencerexpert.ru/pl/lite/widget/script?id=1643753"></script>
+    </div>
+  </div>
+</div>
+<div class="modal" id="m-masshtab" role="dialog" aria-modal="true" aria-label="Тариф Нейро-Масштаб">
+  <div class="modal-dialog"><button class="modal-close" data-close aria-label="Закрыть">&times;</button>
+    <div class="modal-body">
+      <script id="2c60cf73b554a968137fada74c261282ff34f4ac" src="https://influencerexpert.ru/pl/lite/widget/script?id=1643754"></script>
+    </div>
+  </div>
+</div>
+
 <div class="ctl">
   <button id="prev" aria-label="Назад">‹</button>
   <span class="pos"><span id="cur">1</span> / <span id="tot">–</span></span>
@@ -847,6 +897,20 @@ ul.tight li{font-size:3.2cqw}
     var r=this.getBoundingClientRect();
     show(i + ((e.clientX-r.left) > r.width/2 ? 1 : -1));
   });
+
+  // модалки тарифов
+  (function(){
+    function open(id){var m=document.getElementById(id); if(m){m.classList.add('open')}}
+    function closeAll(){document.querySelectorAll('.modal.open').forEach(function(m){m.classList.remove('open')})}
+    document.querySelectorAll('[data-modal]').forEach(function(b){
+      b.addEventListener('click',function(e){e.stopPropagation();open(b.getAttribute('data-modal'))});
+    });
+    document.querySelectorAll('.modal').forEach(function(m){
+      m.addEventListener('click',function(e){if(e.target===m||e.target.hasAttribute('data-close'))closeAll()});
+    });
+    document.addEventListener('keydown',function(e){if(e.key==='Escape')closeAll()});
+  })();
+
   var h=parseInt(location.hash.replace('#',''),10);
   show(isNaN(h)?0:h-1);
 })();
