@@ -169,6 +169,33 @@ a{color:inherit}
 .kit li{display:flex;gap:10px;font-size:15px;line-height:1.4}
 .kit li::before{content:"•";color:var(--pink);font-weight:800;flex-shrink:0}
 
+
+/* фильтр по тарифам в программе */
+.tfilter{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:22px}
+.tf-lab{font-weight:700;font-size:14px;opacity:.7;margin-right:4px}
+.tf{cursor:pointer;font-family:inherit;font-weight:700;font-size:14.5px;padding:11px 18px;border-radius:999px;
+  background:var(--surface);border:1px solid var(--line);color:var(--ink);transition:border-color .18s ease,background .18s ease}
+.tf:hover{border-color:#E3D2E2}
+.tf.active{border-color:var(--pink);background:linear-gradient(160deg,#FFF3FA,#F6EDFE);color:var(--pink-strong)}
+
+/* живой практикум */
+.wshop{margin-top:18px;padding:18px 20px;border-radius:16px;background:var(--surface);border:1px solid var(--line);
+  display:flex;gap:14px;align-items:flex-start}
+.wshop .w-ic{flex-shrink:0;width:38px;height:38px;border-radius:12px;background:#FCE6F1;border:1px solid #F6CFE2;
+  display:flex;align-items:center;justify-content:center;font-size:17px}
+.wshop .w-h{font-weight:800;font-size:15.5px;margin-bottom:3px}
+.wshop .w-p{font-size:14.5px;opacity:.8;line-height:1.4}
+
+/* состояние «недоступно в тарифе» */
+.locked{position:relative;opacity:.42;filter:grayscale(.5)}
+.locked::after{content:"Входит в «Систему» и «Масштаб»";position:absolute;right:14px;top:14px;
+  background:var(--dark);color:#fff;font-size:11px;font-weight:700;letter-spacing:.04em;
+  padding:6px 11px;border-radius:999px;white-space:nowrap}
+.lv-tab.locked{opacity:.5;filter:none}
+.lv-tab.locked::after{content:"нет в «Старте»";position:static;display:block;margin-top:6px;
+  background:transparent;color:var(--pink-strong);padding:0;font-size:11px}
+@media(max-width:900px){.locked::after{position:static;display:inline-block;margin-bottom:8px}}
+
 /* два столбца — подходит / не подходит */
 .two{display:grid;grid-template-columns:1fr 1fr;gap:20px}
 .col{border-radius:var(--radius-lg);padding:30px;border:1px solid var(--line);background:var(--surface)}
@@ -345,7 +372,7 @@ footer{background:var(--dark);color:#CFC7D7;padding:56px 0 34px}
   <div class="wrap hero-grid">
     <div>
       <span class="label">Курс · 4 недели · 4 модуля</span>
-      <h1>ИИ перестанет быть болталкой<br><span class="accent">и станет твоим рабочим инструментом</span></h1>
+      <h1>ИИ перестанет быть болталкой <span class="accent">и станет твоим рабочим инструментом</span></h1>
       <p class="hero-lead">От первого запроса без страха – до агентного ИИ, который ведёт твою рутину на потоке. Не про промпты, а про систему, которая работает вместо тебя.</p>
       <div class="hero-cta">
         <span class="date-pill"><span class="dot"></span>Старт <b>28 сентября</b></span>
@@ -389,7 +416,13 @@ footer{background:var(--dark);color:#CFC7D7;padding:56px 0 34px}
       <h2>4 уровня – <span class="accent">от страха до своей системы</span></h2>
       <p>Курс ведёт по ступеням: уверенный старт без страха → доверие к результату «в своём голосе» → практика на реальных кейсах → своя рабочая система с агентным ИИ.</p>
     </div>
-    <div class="levels reveal">
+    <div class="tfilter reveal">
+      <span class="tf-lab">Что входит в тариф:</span>
+      <button type="button" class="tf" data-t="start">Нейро-Старт</button>
+      <button type="button" class="tf active" data-t="sistema">Нейро-Система</button>
+      <button type="button" class="tf" data-t="masshtab">Нейро-Масштаб</button>
+    </div>
+    <div class="levels reveal" data-tariff="sistema">
       <div class="lv-tabs" role="tablist">
         <button class="lv-tab active" data-lv="1"><span class="n">УРОВЕНЬ 01</span>Старт</button>
         <button class="lv-tab" data-lv="2"><span class="n">УРОВЕНЬ 02</span>Надёжность</button>
@@ -406,6 +439,14 @@ footer{background:var(--dark);color:#CFC7D7;padding:56px 0 34px}
             <li>Карта применений: где ИИ приносит пользу и заработок именно вам</li>
             <li>Как расти в ИИ поэтапно: принципы и мышление</li>
           </ul>
+          <div class="wshop">
+            <div class="w-ic">🎙</div>
+            <div>
+              <div class="w-h">Живой практикум · неделя 1</div>
+              <div class="w-p">Вводный практикум по работе с нейросетями – разбираемся вместе, в прямом эфире.</div>
+            </div>
+          </div>
+
           <div class="kit">
             <div class="kit-note">Набор в подарок · тарифы «Система» и «Масштаб»</div>
             <div class="kit-h">Набор <span>«Быстрый старт»</span></div>
@@ -449,6 +490,14 @@ footer{background:var(--dark);color:#CFC7D7;padding:56px 0 34px}
             <li>Визуал для недизайнеров: фирменный стиль и картинки под задачу</li>
             <li>Фото и видео-аватары</li>
           </ul>
+          <div class="wshop">
+            <div class="w-ic">🎙</div>
+            <div>
+              <div class="w-h">Живой практикум · неделя 3</div>
+              <div class="w-p">Живая отработка: разбираем реальные задачи участников и решаем их прямо на встрече.</div>
+            </div>
+          </div>
+
           <div class="kit">
             <div class="kit-note">Набор в подарок · тарифы «Система» и «Масштаб»</div>
             <div class="kit-h">Набор <span>«ИИ для жизни и семьи»</span></div>
@@ -505,7 +554,7 @@ footer{background:var(--dark);color:#CFC7D7;padding:56px 0 34px}
   <div class="wrap">
     <div class="sec-head reveal">
       <span class="label">Говорим честно</span>
-      <h2>Кому подойдёт,<br>а кому <span class="accent">нет</span></h2>
+      <h2>Кому подойдёт, а кому <span class="accent">нет</span></h2>
     </div>
     <div class="two reveal">
       <div class="col good">
@@ -655,7 +704,7 @@ footer{background:var(--dark);color:#CFC7D7;padding:56px 0 34px}
   <div class="wrap">
     <div class="final reveal">
       <span class="date-pill"><span class="dot"></span>Старт <b>28 сентября</b></span>
-      <h2>Через 4 недели ИИ перестанет быть болталкой –<br>и станет <span class="accent">рабочим инструментом</span>, которому доверяешь</h2>
+      <h2>Через 4 недели ИИ перестанет быть болталкой – и станет <span class="accent">рабочим инструментом</span>, которому доверяешь</h2>
       <p>Первый поток камерный: количество мест ограничено – 50 на тарифе «Нейро-Система» и всего 3 на «Нейро-Масштаб».</p>
       <a href="#tariffs" class="btn">Выбрать тариф и забронировать место <span class="arw">→</span></a>
     </div>
@@ -755,6 +804,28 @@ footer{background:var(--dark);color:#CFC7D7;padding:56px 0 34px}
       var lv=t.getAttribute('data-lv');
       bodies.forEach(function(b){b.hidden = b.getAttribute('data-body')!==lv});
       if(typeof ym==='function'){try{ym(111314883,'reachGoal','level_view')}catch(e){}}
+    });
+  });
+})();
+
+
+// фильтр программы по тарифу
+(function(){
+  var wrap=document.querySelector('.levels'); if(!wrap) return;
+  var btns=document.querySelectorAll('.tf');
+  function apply(t){
+    wrap.setAttribute('data-tariff',t);
+    var start = (t==='start');
+    wrap.querySelectorAll('.kit, .wshop').forEach(function(el){ el.classList.toggle('locked', start) });
+    var tab4=wrap.querySelector('.lv-tab[data-lv="4"]');
+    if(tab4) tab4.classList.toggle('locked', start);
+    if(typeof ym==='function'){try{ym(111314883,'reachGoal','tariff_filter')}catch(e){}}
+  }
+  btns.forEach(function(b){
+    b.addEventListener('click',function(){
+      btns.forEach(function(x){x.classList.remove('active')});
+      b.classList.add('active');
+      apply(b.getAttribute('data-t'));
     });
   });
 })();
